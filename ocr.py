@@ -29,7 +29,9 @@ cv2.imwrite(filename, gray)
 # the temporary file
 text = pytesseract.image_to_string(Image.open(filename))
 os.remove(filename)
-print(spell(text))
+text= text.strip().split()
+for t in text:
+	print(spell(t))
  
 # show the output images
 cv2.imshow("Image", image)
