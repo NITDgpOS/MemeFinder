@@ -5,6 +5,7 @@ from pytesseract import image_to_string
 import argparse
 import cv2
 import os
+from autocorrect import spell
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -28,7 +29,7 @@ cv2.imwrite(filename, gray)
 # the temporary file
 text = pytesseract.image_to_string(Image.open(filename))
 os.remove(filename)
-print(text)
+print(spell(text))
  
 # show the output images
 cv2.imshow("Image", image)
