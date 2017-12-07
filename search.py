@@ -4,7 +4,6 @@ import pickle
 
 def search(query):
 	queryList= "".join((char if char.isalpha() else " ") for char in query).split()
-
 	keywords = []
 	for query in queryList: 
 		for syn in wordnet.synsets(query):
@@ -12,9 +11,10 @@ def search(query):
 		        keywords.append(l.name())
 	return keywords
 
-def init_engine(database):
+def create_index(database):
 	db= open(database, 'r')
 	INDEX={}
+	db.readline()	# ignoring the column headers
 	for entry in db:
 		entry= entry.split(',')
 		filename= entry[0]
@@ -23,7 +23,12 @@ def init_engine(database):
 	index_file = open("index.pickle","wb")
 	pickle.dump(INDEX, index_file)
 	index_file.close()
+	return INDEX
+
+def load_index(index_name):
+	index_file = open(index_name,"rb")
+	return pickle.load(index_file)
 
 # print(search(raw_input()))
 
-init_engine("data3.txt")
+print(len(create_index("data3.txt")))
