@@ -44,12 +44,12 @@ def extractText(image_path):
 
 count = 0
 for line in fread:
-	if count>1:
+	if count>0:
 		image_location= line.split(',')[0]
 		fromImage= extractText(image_location)
-		fwrite.write(line+","+fromImage+"\n")
+		fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
 	else:
-		fwrite.write(line+", ocr_out\n")
+		fwrite.write(line[:-1]+", ocr_out\n")
 	print(count)	
 	count= count+1
 
