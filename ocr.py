@@ -6,6 +6,7 @@ import argparse
 import cv2
 import os
 from autocorrect import spell
+import string
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -30,10 +31,13 @@ cv2.imwrite(filename, gray)
 text = pytesseract.image_to_string(Image.open(filename))
 os.remove(filename)
 text= text.strip().split()
+chars_to_remove = ['.', '!', ':']
 for t in text:
+	for c in chars_to_remove:
+		t=string.replace(t, c,'')
 	print(spell(t))
  
 # show the output images
-cv2.imshow("Image", image)
-cv2.imshow("Output", gray)
-cv2.waitKey(0)
+# cv2.imshow("Image", image)
+# cv2.imshow("Output", gray)
+# cv2.waitKey(0)
