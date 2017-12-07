@@ -6,7 +6,7 @@ import time
 import shutil
 
 db = open("database.txt", "w")
-db.write("file_location, attributes")
+db.write("file_location, attributes\n")
 
 source= 'raw/'
 destination= 'processed/'

@@ -1,4 +1,5 @@
-file_location, attributesprocessed/c7750386e3365080cc8a94dd612edee52783122ef1ca5d1c5d531e936fe9c553.png,"team sucks"
+file_location, attributes
+processed/c7750386e3365080cc8a94dd612edee52783122ef1ca5d1c5d531e936fe9c553.png,"team sucks"
 processed/6c136c16a44d098409af2dd63b886b639c5270c78f6e00fbae2c47341b2a97ff.jpg,:r:empiredidnothingwrong
 processed/b39a2c912850c86e10d44942b26410a0f782e20ea62a8cc5bd4f5c8d664fc388.png,A visual representation of League of Legends
 processed/63defa8ebb041bea408e55cef3c77810239431a342fdcbd25cac8be7083750db.jpg,A+                 
