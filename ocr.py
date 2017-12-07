@@ -2,38 +2,54 @@
 from PIL import Image
 import pytesseract
 from pytesseract import image_to_string
-import argparse
+#import argparse
 import cv2
 import os
 from autocorrect import spell
+import string
+
+fread= open('data1.txt', 'r')
+fwrite= open('data2.txt', 'w')
 
 # construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True, help="path to input image to be OCR'd")
-args = vars(ap.parse_args())
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-i", "--image", required=True, help="path to input image to be OCR'd")
+# args = vars(ap.parse_args())
 
 # load the example image and convert it to grayscale
-image = cv2.imread(args["image"])
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#image = cv2.imread(args["image"])
+def extractText(image_path):
+	image= cv2.imread(image_path)
+	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+	gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+	gray = cv2.medianBlur(gray, 3)
 
-gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+	# write the grayscale image to disk as a temporary file so we can
+	# apply OCR to it
+	filename= "{}.png".format(os.getpid())
+	cv2.imwrite(filename, gray)
 
-gray = cv2.medianBlur(gray, 3)
+	# load the image as a PIL/Pillow image, apply OCR, and then delete
+	# the temporary file
+	text = pytesseract.image_to_string(Image.open(filename))
+	os.remove(filename)
+	text= text.strip().split()
+	chars_to_remove = ['.', '!', ':']
+	extracted=list()
+	for t in text:
+		for c in chars_to_remove:
+			t=string.replace(t, c,'')
+		extracted.append(spell(t))
+ 	return(' '.join(extracted))
 
-# write the grayscale image to disk as a temporary file so we can
-# apply OCR to it
-filename= "{}.png".format(os.getpid())
-cv2.imwrite(filename, gray)
+count = 0
+for line in fread:
+	if count>1:
+		image_location= line.split(',')[0]
+		fromImage= extractText(image_location)
+		fwrite.write(line+","+fromImage+"\n")
+	else:
+		fwrite.write(line+", ocr_out\n")
+	print(count)	
+	count= count+1
 
-# load the image as a PIL/Pillow image, apply OCR, and then delete
-# the temporary file
-text = pytesseract.image_to_string(Image.open(filename))
-os.remove(filename)
-text= text.strip().split()
-for t in text:
-	print(spell(t))
- 
-# show the output images
-cv2.imshow("Image", image)
-cv2.imshow("Output", gray)
-cv2.waitKey(0)
