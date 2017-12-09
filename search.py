@@ -5,7 +5,7 @@ import pickle
 
 # Generated extended related queries based on the user query
 def generateQuery(query):
-	queryList= "".join((char if char.isalpha() else " ") for char in query).split()
+	queryList= (" ".join(("".join((char if char.isalpha() else " ") for char in query)).split(','))).split()
 	keywords = []
 	for query in queryList: 
 		for syn in wordnet.synsets(query):
@@ -21,7 +21,8 @@ def create_index(database):
 	for entry in db:
 		entry= entry.split(',')
 		filename= entry[0]
-		text= (' '.join(entry[1:])).split()
+		text= ' '.join(entry[1:])
+		text= (" ".join(("".join((char if char.isalpha() else " ") for char in text)).split(','))).split()
 		INDEX[filename]= text
 	index_file = open("index.pickle","wb")
 	pickle.dump(INDEX, index_file)
@@ -38,14 +39,19 @@ def getScore(INDEX, keywords):
 	#Assigning score proportional to relevance
 	for word in keywords:
 		for i in range(totalEntries):
-			if word in valueList[i]:	# matching to be made less strict
+			if word.lower() in [x.lower() for x in valueList[i]]:
 				scoreList[i]= scoreList[i] +1
 	score_file = open("score.pickle","wb")
 	pickle.dump(scoreList, score_file)
 	score_file.close()
-	return scoreList
 
-# Loads an index dictionary
+	matched_files=[]
+	for t in range(len(scoreList)):
+		if scoreList[t] > 0:
+			matched_files.append(keyList[t])
+
+	return scoreList, matched_files
+
 def load_index(index_name):
 	index_file = open(index_name,"rb")
 	return pickle.load(index_file)
@@ -54,4 +60,4 @@ def load_index(index_name):
 
 # print(len(create_index("data3.txt")))
 
-print(getScore(create_index("data3.txt"), generateQuery('sleep')))
+print(getScore(create_index("data3.txt"), generateQuery('team sucks')))
