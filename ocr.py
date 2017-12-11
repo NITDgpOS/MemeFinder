@@ -43,16 +43,16 @@ def extractText(image_path):
             extracted.append(spell(t))
         return(' '.join(extracted))
 
-    count = 0
-    for line in fread:
-        if count>0:
-            image_location= line.split(',')[0]
-            fromImage= extractText(image_location)
-            fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
-        else:
-            fwrite.write(line[:-1]+", ocr_out\n")
-        print(count)    
-        count= count+1
+        count = 0
+        for line in fread:
+            if count>0:
+                image_location= line.split(',')[0]
+                fromImage= extractText(image_location)
+                fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
+            else:
+                fwrite.write(line[:-1]+", ocr_out\n")
+            print(count)    
+            count= count+1
 
     except:
         print("image skipped")
