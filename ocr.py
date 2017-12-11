@@ -42,7 +42,10 @@ def extractText(image_path):
                 t=string.replace(t, c,'')
             extracted.append(spell(t))
         return(' '.join(extracted))
-
+    except:
+        print("image skipped")
+    
+try:
     count = 0
     for line in fread:
         if count>0:
@@ -53,6 +56,5 @@ def extractText(image_path):
             fwrite.write(line[:-1]+", ocr_out\n")
         print(count)    
         count= count+1
-
-    except:
-        print("image skipped")
+except:
+    print("image skipped")
