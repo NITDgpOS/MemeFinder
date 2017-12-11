@@ -21,6 +21,8 @@ fwrite= open('data2.txt', 'w')
 def extractText(image_path):
     try:
         image= cv2.imread(image_path)
+	if image == None:
+		return "00000"
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
         gray = cv2.medianBlur(gray, 3)
@@ -52,7 +54,8 @@ try:
         if count>0:
             image_location= line.split(',')[0]
             fromImage= extractText(image_location)
-            fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
+		if fromImage != "00000":
+           	 fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
         else:
             fwrite.write(line[:-1]+", ocr_out\n")
         print(count)    
