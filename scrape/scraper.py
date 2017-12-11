@@ -27,17 +27,17 @@ def saveImages(posts, scoreLimit, save_dir='reddit_wallpapers'):
             saveImage(url, title, save_dir)
 
 def saveImage(url, title, save_dir):
-	global counter
+    global counter
     try:
-	    save_dir = makeSaveDir(save_dir)
-	    dot_location = url.rfind('.')
-	    filename = (save_dir + title.replace('/', ':') + url[dot_location: dot_location + 4]).encode('utf-8')
-	    if not os.path.exists(filename):
-	        print('Saving ' + filename + '!\n')
-	        counter += 1
-	        urllib.urlretrieve(url, filename)
-except OSError:
-		print('file name too long')
+        save_dir = makeSaveDir(save_dir)
+        dot_location = url.rfind('.')
+        filename = (save_dir + title.replace('/', ':') + url[dot_location: dot_location + 4]).encode('utf-8')
+        if not os.path.exists(filename):
+            print('Saving ' + filename + '!\n')
+            counter += 1
+            urllib.urlretrieve(url, filename)
+    except OSError:
+        print('file name too long')
 
 def makeSaveDir(dir):
     if not os.path.exists(dir):
