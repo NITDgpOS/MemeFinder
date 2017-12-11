@@ -50,6 +50,8 @@ def getScore(INDEX, keywords):
 		if scoreList[t] > 0:
 			matched_files.append(keyList[t])
 
+	while 0 in scoreList:
+		scoreList.remove(0)
 	return scoreList, matched_files
 
 def load_index(index_name):
@@ -60,4 +62,4 @@ def load_index(index_name):
 
 # print(len(create_index("data3.txt")))
 
-print(getScore(create_index("data3.txt"), generateQuery('team sucks')))
+# print(getScore(create_index("data3.txt"), generateQuery('team sucks')))

@@ -1,6 +1,7 @@
 import sys
 from os import listdir
 from os.path import isfile, join
+from search import *
 
 try:
     from Tkinter import *
@@ -16,6 +17,16 @@ except ImportError:
 
 from PIL import Image, ImageTk
 
+
+
+class memes:
+	def __init__(self):
+		self.memeList= ['nofile']
+		self.currentImage= 0
+
+m= memes()
+
+
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
     w = gui
@@ -28,44 +39,37 @@ def destroy_window():
     top_level.destroy()
     top_level = None
 
-def getMemeList(source):
-	paths = [f for f in listdir(source) if isfile(join(source, f))]
-	finalPath= [source+'/'+p for p in paths]
-	print(finalPath)
-	return finalPath
+def getMemeList(query):
+	# paths = [f for f in listdir(source) if isfile(join(source, f))]
+	# finalPath= [source+'/'+p for p in paths]
+	# print(finalPath)
+	# return finalPath
+	source='data3.txt'
+	scoreList, m.memeList= getScore(create_index(source), generateQuery(query))
 
-class memes:
-	def __init__(self):
-		self.memeList= getMemeList('gui_test')
-		self.currentImage= 0
-
-m= memes()
 
 def display(canvas, image_path):
 	x= Image.open(image_path)
 	print('x working')
-	gif1 = ImageTk.PhotoImage(image= x.resize((400,400),Image.ANTIALIAS))
-	canvas.create_image(5,10, image = gif1)
+	gif1 = ImageTk.PhotoImage(image= x.resize((300,300),Image.ANTIALIAS))
+	canvas.create_image(200,150, image = gif1)
 	canvas.gif1=gif1
 
-def go(canvas):
+def go(canvas, query):
+	getMemeList(query)
 	imageList= m.memeList
 	# diplay 1st image
 	display(canvas, imageList[0])
 	print('display done')
-	return imageList
 
 def prev(canvas):
-	currentImage= (currentImage-1)%len(m.memeList)
-	prevImage= memeList[currentImage]
-	display(canvas, prevImage)
+	m.currentImage= (m.currentImage-1)%len(m.memeList)
+	display(canvas, m.memeList[m.currentImage])
 
 def next(canvas):
-	currentImage= m.currentImage
-	currentImage= (currentImage+1)%len(m.memeList)
-	nextImage= m.memeList[currentImage]
-	m.currentImage=currentImage
-	display(canvas, nextImage)
+	m.currentImage= (m.currentImage+1)%len(m.memeList)
+	display(canvas, m.memeList[m.currentImage])
+
 
 
 if __name__ == '__main__':

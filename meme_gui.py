@@ -70,14 +70,6 @@ class Meme_Finder:
         self.Canvas1.configure(width=414)
 
 
-        # Intiate Search Engine Button
-        self.go = Button(top)
-        self.go.place(relx=0.81, rely=0.06, height=26, width=67)
-        self.go.configure(activebackground="#d9d9d9")
-        self.go.configure(text='''Go''')
-        self.go.configure(command= lambda: meme_gui_support.go(self.Canvas1))
-
-
         # Search Query Entry
         self.searchQuery = Entry(top)
         self.searchQuery.place(relx=0.15, rely=0.06, relheight=0.04
@@ -85,6 +77,14 @@ class Meme_Finder:
         self.searchQuery.configure(background="white")
         self.searchQuery.configure(font="TkFixedFont")
         self.searchQuery.configure(width=286)
+
+
+        # Intiate Search Engine Button
+        self.go = Button(top)
+        self.go.place(relx=0.81, rely=0.06, height=26, width=67)
+        self.go.configure(activebackground="#d9d9d9")
+        self.go.configure(text='''Go''')
+        self.go.configure(command= lambda: meme_gui_support.go(self.Canvas1, self.searchQuery.get()))
 
         # Label for Search
         self.TLabel1 = ttk.Label(top)
