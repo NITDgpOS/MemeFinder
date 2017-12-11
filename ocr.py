@@ -42,6 +42,7 @@ def extractText(image_path):
                 t=string.replace(t, c,'')
             extracted.append(spell(t))
         return(' '.join(extracted))
+
     except:
         print("image skipped")
     
@@ -58,3 +59,4 @@ try:
         count= count+1
 except:
     print("image skipped")
+
