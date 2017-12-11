@@ -19,10 +19,10 @@ fwrite= open('data2.txt', 'w')
 # load the example image and convert it to grayscale
 #image = cv2.imread(args["image"])
 def extractText(image_path):
-    try:
+try:
         image= cv2.imread(image_path)
-        if image == None:
-            return "00000"
+	if image == None:
+		return "00000"
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
         gray = cv2.medianBlur(gray, 3)
@@ -45,8 +45,8 @@ def extractText(image_path):
             extracted.append(spell(t))
         return(' '.join(extracted))
 
-    except:
-        print("image skipped")
+except:
+	print("image skipped")
     
 try:
     count = 0
