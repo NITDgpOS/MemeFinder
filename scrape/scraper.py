@@ -11,8 +11,8 @@ def getPosts(subreddit, postLimit):
     r = requests.get(url, headers=headers)
     if r.status_code == requests.codes.ok:
         data = r.json()
-        print('Sleeping for 3 seconds...\n')
-        time.sleep(3)
+        print('Sleeping for 2 seconds...\n')
+        time.sleep(2)
         return data['data']['children']
     else:
         print('Sorry, but there was an error retrieving the subreddit\'s data!')
@@ -27,21 +27,24 @@ def saveImages(posts, scoreLimit, save_dir='reddit_wallpapers'):
             saveImage(url, title, save_dir)
 
 def saveImage(url, title, save_dir):
-    global counter
-    save_dir = makeSaveDir(save_dir)
-    dot_location = url.rfind('.')
-    filename = (save_dir + title.replace('/', ':') + url[dot_location: dot_location + 4]).encode('utf-8')
-    if not os.path.exists(filename):
-        print('Saving ' + filename + '!\n')
-        counter += 1
-        urllib.urlretrieve(url, filename)
+	global counter
+    try:
+	    save_dir = makeSaveDir(save_dir)
+	    dot_location = url.rfind('.')
+	    filename = (save_dir + title.replace('/', ':') + url[dot_location: dot_location + 4]).encode('utf-8')
+	    if not os.path.exists(filename):
+	        print('Saving ' + filename + '!\n')
+	        counter += 1
+	        urllib.urlretrieve(url, filename)
+except OSError:
+		print('file name too long')
 
 def makeSaveDir(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
     return dir + '/'
 
-def downloadImagesFromReddit(subreddits, postLimit=100000, scoreLimit=10):
+def downloadImagesFromReddit(subreddits, postLimit=100000, scoreLimit=100):
     for subreddit in subreddits:
         posts = getPosts(subreddit, postLimit)
         saveImages(posts, scoreLimit, subreddit.lower())
@@ -52,41 +55,40 @@ def main():
         downloadImagesFromReddit(sys.argv[1:])
     else:
         downloadImagesFromReddit([
-            'Memes',
-            'Dankmemes',
-            'surrealmemes',
-            'MemeEconomy',
-            'meme',
-            'zuckmemes',
-            'BrainMemes',
-            'LeagueOfMemes',
-            'MetalMemes',
-            'fffffffuuuuuuuuuuuu',
-            'treecomics',
-            'gotfort',
-            'catfort',
-            'vertical',
-            'adviceanimals',
-            'inglip',
-            'firstworldproblems',
-            'fifthworldproblems',
-            'HoldMyBeer',
-            'politics',
-            'blackpeopletwitter',
-            'TheStopGirl',
-            'OregonTrailProblems',
-            'Pyongyang',
-            'NotInteresting',
-            'Terriblefacebookmemes',
-            'NoNoNoNoYes',
-            'YesYesYesYesNo',
-            'OffensiveMemes',
-            'Animemes',
-            'animememes',
-            'MortyMemes',
-            'rickandmorty',
-            'ilerminaty',
-            'Conspiritards',
+            # 'Memes',
+            # 'Dankmemes',
+            # 'surrealmemes',
+            # 'MemeEconomy',
+            # 'meme',
+            # 'zuckmemes',
+            # 'BrainMemes',
+            # 'LeagueOfMemes',
+            # 'MetalMemes',
+            # 'fffffffuuuuuuuuuuuu',
+            # 'treecomics',
+            # 'gotfort',
+            # 'catfort',
+            # 'vertical',
+            # 'adviceanimals',
+            # 'inglip',
+            # 'firstworldproblems',
+            # 'fifthworldproblems',
+            # 'HoldMyBeer',
+            # 'politics',
+            # 'blackpeopletwitter',
+            # 'TheStopGirl',
+            # 'OregonTrailProblems',
+            # 'Pyongyang',
+            # 'NotInteresting',
+            # 'Terriblefacebookmemes',
+            # 'NoNoNoNoYes',
+            # 'YesYesYesYesNo',
+            # 'OffensiveMemes',
+            # 'Animemes',
+            # 'animememes',
+            # 'MortyMemes',
+            # 'rickandmorty',
+            # 'ilerminaty',
             'shittyadviceanimals',
             'meirl',
             'AdviceAnimals',
