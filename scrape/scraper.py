@@ -77,7 +77,7 @@ def main():
             'OregonTrailProblems',
             'Pyongyang',
             'NotInteresting',
-            'Terriblefacebookmemes'.
+            'Terriblefacebookmemes',
             'NoNoNoNoYes',
             'YesYesYesYesNo',
             'OffensiveMemes',
@@ -173,7 +173,6 @@ def main():
             'WonderWoman',
             'marvelmemes',
             'dcmemes'
-
         ])
 
 if __name__ == '__main__':
