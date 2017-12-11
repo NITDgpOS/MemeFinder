@@ -54,8 +54,8 @@ try:
 		if count>0:
 			image_location= line.split(',')[0]
 			fromImage= extractText(image_location)
-				if fromImage != "00000":
-					fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
+			if fromImage != "00000":
+				fwrite.write(line[:-1]+","+ ''.join([i if ord(i) < 128 else ""  for i in fromImage])+ "\n")
 		else:
 			fwrite.write(line[:-1]+", ocr_out\n")
 		print(count)    
