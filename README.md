@@ -88,7 +88,6 @@ sudo bash run.sh
 * The project is done for the fufilment of __Recruitment Tasks - Spring to Summer 2017 : Task D__ by Precog IIIT D
 * The project asked for minimum 1000 memes but I have scraped only 835 memes. The scraper is capable of acquiring a lot of memes, even
 more than thousand but because of the deadline I focussed more on testing than scraping. For more memes, please run the bash file `collect.sh`
-* Some memes may be `nsfw` I couldn't find the time to manually filter them, I am extremely sorry for this.
 
 ### Applicant Details:
 * Name:						Aniq Ur Rahman
