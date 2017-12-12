@@ -45,12 +45,11 @@ def getMemeList(query):
 	# print(finalPath)
 	# return finalPath
 	source='data3.txt'
-	scoreList, m.memeList= getScore(create_index(source), generateQuery(query))
+	m.memeList= getScore(create_index(source), generateQuery(query))
 
 
 def display(canvas, image_path):
 	x= Image.open(image_path)
-	print('x working')
 	gif1 = ImageTk.PhotoImage(image= x.resize((300,300),Image.ANTIALIAS))
 	canvas.create_image(200,150, image = gif1)
 	canvas.gif1=gif1
@@ -58,9 +57,12 @@ def display(canvas, image_path):
 def go(canvas, query):
 	getMemeList(query)
 	imageList= m.memeList
-	# diplay 1st image
-	display(canvas, imageList[0])
-	print('display done')
+	if imageList!= None:
+		# diplay 1st image
+		display(canvas, imageList[0])
+		print('display done')
+	else:
+		print('No matches')
 
 def prev(canvas):
 	m.currentImage= (m.currentImage-1)%len(m.memeList)

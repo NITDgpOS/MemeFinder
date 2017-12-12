@@ -52,7 +52,19 @@ def getScore(INDEX, keywords):
 
 	while 0 in scoreList:
 		scoreList.remove(0)
-	return scoreList, matched_files
+
+	matched={}
+	l= len(scoreList)
+
+	for i in range(l):
+		matched[matched_files[i]]= scoreList[i]
+
+	import operator
+	sorted_list= sorted(matched.items(), key= operator.itemgetter(1))
+	
+	# return scoreList, matched_files
+	memes= [ x[0] for x in sorted_list]
+	return memes[::-1]
 
 def load_index(index_name):
 	index_file = open(index_name,"rb")
