@@ -2,6 +2,13 @@
 Author: Aniq Ur Rahman : @Aniq55 (GitHub, GitLab, BitBucket)
 
 ## Project Description
+
+### Technologies employed
+* Image Processing
+* Machine Learning
+* Natural Language Processing
+* Shell Scripting
+
 ### Collection
 The memes are collected from popular subreddits using a scraper script `scrape/scraper.py`
 
@@ -11,11 +18,20 @@ The memes are collected from popular subreddits using a scraper script `scrape/s
 * The standardized images are stored in the `processed` folder
 
 ### Query Extraction
-* The entered query is split into words and synonyms for each word is added to the list of `related queries`
+* The entered query is split into words and synonyms for each word is added to the list of `related queries` using the nltk library
 * We scan the database to match words with the words in `related queries` 
 * This broadens the search area and minimizes zero output scenarios
 
-### Usage
+### Relevance to query
+* The memes are ordered in order of their relevance to the search query
+* This is done by assigning a score to each meme present in the database and then sorting in descending order of scores
+
+### Optical Character Recognition
+* OCR is done using __Tesseract__ to extract text from the memes which is an essential part of the project
+* The extracted text are not perfectly accurate so the output from ocr is fed into the spellchecker of the Python `autocorrect` library
+* The spellchecker makes the conversion more accurate
+
+### Scripts for Usage
 * To collect the memes from subreddits
 ```
 sudo bash collect.sh
@@ -30,10 +46,14 @@ sudo bash run.sh
 * The selected memes can be browsed using the `Next` and `Previous` buttons
 
 ### Requirements
-* OpenCV (cv2)
-* Tesseract
-* NLTK
-* Pickle
+* cv2 (OpenCV)
+* pytesseract
+* nltk
+* PIL
+* hashlib
+* shutil
+* autocorrect
+* pickle
 
 ### Future Improvements
 * Adding functionality to the progress bar
@@ -42,7 +62,23 @@ sudo bash run.sh
 * Storing popular meme templates and checking images for similarity and associating special keywords
 
 ## Documentation
+
 ### `standard.py`
+* renames the memes present in `raw` folder to a  unique hex digest generated filename and moves it to `processed` folder
+
 ### `ocr.py`
+* `extractText(image_path)`: extracts text using OCR from the meme at `image_path`
+
 ### `search.py`
+* `generateQuery(query)`:
+* `create_index(database)`:
+* `getScore(INDEX, keywords)`:
+* `load_index(index_name)`:
+
 ### `meme_gui_support.py`
+* `meme`:
+* `getMemeList(query)`:
+* `display(canvas, image_path)`:
+* `go(canvas, query)`:
+* `prev(canvas)`:
+* `next(canvas)`:

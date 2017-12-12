@@ -40,10 +40,6 @@ def destroy_window():
     top_level = None
 
 def getMemeList(query):
-	# paths = [f for f in listdir(source) if isfile(join(source, f))]
-	# finalPath= [source+'/'+p for p in paths]
-	# print(finalPath)
-	# return finalPath
 	source='data2.txt'
 	m.memeList= getScore(create_index(source), generateQuery(query))
 
