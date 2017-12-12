@@ -8,8 +8,8 @@ import os
 from autocorrect import spell
 import string
 
-fread= open('data1.txt', 'r')
-fwrite= open('data2.txt', 'w')
+fread= open('database.txt', 'r')
+fwrite= open('data2.txt', 'a+')
 
 # construct the argument parse and parse the arguments
 # ap = argparse.ArgumentParser()

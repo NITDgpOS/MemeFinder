@@ -44,7 +44,7 @@ def getMemeList(query):
 	# finalPath= [source+'/'+p for p in paths]
 	# print(finalPath)
 	# return finalPath
-	source='data3.txt'
+	source='data2.txt'
 	m.memeList= getScore(create_index(source), generateQuery(query))
 
 
