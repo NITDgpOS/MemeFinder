@@ -57,6 +57,7 @@ sudo bash run.sh
 
 ### Future Improvements
 * Adding functionality to the progress bar
+* Correct the size scaling of memes for display on the canvas
 * Adding feature to flush stored memes
 * Creating an option to enter the names of subreddits to scrape from
 * Storing popular meme templates and checking images for similarity and associating special keywords
