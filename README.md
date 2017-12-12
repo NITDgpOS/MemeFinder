@@ -32,7 +32,7 @@ The memes are collected from popular subreddits using a scraper script `scrape/s
 * The extracted text are not perfectly accurate so the output from ocr is fed into the spellchecker of the Python `autocorrect` library
 * The spellchecker makes the conversion more accurate
 
-## Quick Testing
+### Quick Testing
 To run the GUI and test the functionalities, simply type 
 ```
 sudo bash run.sh
