@@ -1,5 +1,5 @@
 # Meme Retrieval Engine
-Author: Aniq Ur Rahman : @Aniq55 (GitHub, GitLab, BitBucket)
+Author: __Aniq Ur Rahman__ | @Aniq55 (GitHub, GitLab, BitBucket)
 
 ## Project Description
 
@@ -70,15 +70,23 @@ sudo bash run.sh
 * `extractText(image_path)`: extracts text using OCR from the meme at `image_path`
 
 ### `search.py`
-* `generateQuery(query)`:
-* `create_index(database)`:
-* `getScore(INDEX, keywords)`:
-* `load_index(index_name)`:
+* `generateQuery(query)`: Extends the query to include all synonyms related to the input query using nltk package
+* `create_index(database)`: creates an dictionary (index) of all memes stored in the database, where the __filename__ is the `key` and the __associated text__ is the `value`
+* `getScore(INDEX, keywords)`: Creates a relevance based score list matched with the filenames in `INDEX` for the given `keywords`
+* `load_index(index_name)`: Loads an index dictionary from `index_name` using `pickle` library
 
 ### `meme_gui_support.py`
-* `meme`:
-* `getMemeList(query)`:
-* `display(canvas, image_path)`:
-* `go(canvas, query)`:
-* `prev(canvas)`:
-* `next(canvas)`:
+* `meme`: class which contains vital information like `memeList` and `currentImage` and the object of this class is very important in the functioning of the GUI
+* `getMemeList(query)`: gets the list of memes which match the given `query`
+* `display(canvas, image_path)`: displays the image at `image_path` on the `canvas` in the GUI
+* `go(canvas, query)`: this function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`
+* `prev(canvas)`: displays the previous image on the `canvas`
+* `next(canvas)`: displays the next image on the `canvas`
+
+
+This was done for the fufilment of __Recruitment Tasks - Spring to Summer 2017 : Task D__ by Precog IIIT D
+
+### Applicant Details:
+* Name:						Aniq Ur Rahman
+* Email ID:					aniqrah@gmail.com
+* GitHub/GitLab/BitBucket:	@Aniq55
