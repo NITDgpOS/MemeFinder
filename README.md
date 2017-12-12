@@ -1,6 +1,7 @@
 # Meme Retrieval Engine
 Author: __Aniq Ur Rahman__ | @Aniq55 (GitHub, GitLab, BitBucket)
 
+
 ## Project Description
 
 ### Technologies employed
@@ -31,7 +32,13 @@ The memes are collected from popular subreddits using a scraper script `scrape/s
 * The extracted text are not perfectly accurate so the output from ocr is fed into the spellchecker of the Python `autocorrect` library
 * The spellchecker makes the conversion more accurate
 
-### Scripts for Usage
+## Quick Testing
+To run the GUI and test the functionalities, simply type 
+```
+sudo bash run.sh
+```
+
+### Collect and Run
 * To collect the memes from subreddits
 ```
 sudo bash collect.sh
