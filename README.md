@@ -1,5 +1,5 @@
 # Meme Retrieval Engine
-Author: __Aniq Ur Rahman__ | @Aniq55 (GitHub, GitLab, BitBucket)
+Author: __Aniq Ur Rahman__ | @Aniq55
 
 ![Demo](memefinder.png)
 ## Project Description
@@ -90,14 +90,3 @@ sudo bash run.sh
 * `go(canvas, query)`: this function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`
 * `prev(canvas)`: displays the previous image on the `canvas`
 * `next(canvas)`: displays the next image on the `canvas`
-
-
-## Precog Task
-* The project is done for the fufilment of __Recruitment Tasks - Spring to Summer 2017 : Task D__ by Precog IIIT D
-* The project asked for minimum 1000 memes but I have scraped only 835 memes. The scraper is capable of acquiring a lot of memes, even
-more than thousand but because of the deadline I focussed more on testing than scraping. For more memes, please run the bash file `collect.sh`
-
-### Applicant Details:
-* Name:						Aniq Ur Rahman
-* Email ID:					aniqrah@gmail.com
-* GitHub/GitLab/BitBucket:	@Aniq55
