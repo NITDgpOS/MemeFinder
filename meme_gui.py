@@ -79,6 +79,13 @@ class Meme_Finder:
         self.searchQuery.configure(width=286)
 
 
+	# Intiate Settings Button
+        self.settings = Button(top)
+        self.settings.place(relx=0.81, rely=0.005, height=26, width=67)
+        self.settings.configure(activebackground="#d9d9d9")
+        self.settings.configure(text='''Settings''')
+        self.settings.configure(command= lambda: meme_gui_support.settings())
+
         # Intiate Search Engine Button
         self.go = Button(top)
         self.go.place(relx=0.81, rely=0.06, height=26, width=67)
