@@ -79,6 +79,20 @@ class Meme_Finder:
         self.searchQuery.configure(width=286)
 
 
+	# Intiate Settings Dropdown
+	
+	self.menu = Menu(top)
+	#self.menubar.place(relx=0.04, rely=0.01, height=16, width=44)
+	self.filemenu= Menu(self.menu, tearoff=0)
+	
+	self.filemenu.add_command(label="Enter subreddits to collect", command= lambda: meme_gui_support.settings())
+	#self.filemenu.add_separator()
+	#self.filemenu.add_command(label="Add subreddits")
+	self.menu.add_cascade(label="Settings", menu=self.filemenu)
+	top.config(menu=self.menu)
+	self.menu.post(0,0)
+
+
         # Intiate Search Engine Button
         self.go = Button(top)
         self.go.place(relx=0.81, rely=0.06, height=26, width=67)
@@ -93,6 +107,8 @@ class Meme_Finder:
         self.TLabel1.configure(foreground="#000000")
         self.TLabel1.configure(relief=FLAT)
         self.TLabel1.configure(text='''Search''')
+        
+        
 
         self.menubar = Menu(top,font="TkMenuFont",bg=_bgcolor,fg=_fgcolor)
         top.configure(menu = self.menubar)
