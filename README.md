@@ -17,7 +17,7 @@ The memes are collected from popular subreddits using a scraper script `scrape/s
 
 ### Standardization
 * The memes collected are put in `raw` folder and the script `standard.py` is run
-* Each file name is extracted and stored in a text file next to the new hex based filename generated fot the image
+* Each file name is extracted and stored in a text file next to the new hex based filename generated for the image
 * The standardized images are stored in the `processed` folder
 
 ### Query Extraction
