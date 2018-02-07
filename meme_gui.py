@@ -160,7 +160,7 @@ class Meme_Finder:
         self.Canvas1.configure(selectbackground="#c4c4c4")
         self.Canvas1.configure(width=414)
 
-        
+
 if __name__ == '__main__':
     vp_start_gui()
 

@@ -88,10 +88,6 @@ def settings():
 	c.place(relx=0.73, rely = 0.7, height=26, width=67)
 
 	root.mainloop()
-	#elif 
-
-	
-
 def go(canvas, query):
 	getMemeList(query)
 	imageList= m.memeList
