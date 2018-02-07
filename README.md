@@ -1,7 +1,9 @@
 # Meme Retrieval Engine
-Author: __Aniq Ur Rahman__ | @Aniq55 (GitHub, GitLab, BitBucket)
 
+[![Join the chat at https://gitter.im/MemeFinder/Lobby](https://badges.gitter.im/MemeFinder/Lobby.svg)](https://gitter.im/MemeFinder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Author: __Aniq Ur Rahman__ | @Aniq55
 
+![Demo](memefinder.png)
 ## Project Description
 
 ### Technologies employed
@@ -15,7 +17,7 @@ The memes are collected from popular subreddits using a scraper script `scrape/s
 
 ### Standardization
 * The memes collected are put in `raw` folder and the script `standard.py` is run
-* Each file name is extracted and stored in a text file next to the new hex based filename generated fot the image
+* Each file name is extracted and stored in a text file next to the new hex based filename generated for the image
 * The standardized images are stored in the `processed` folder
 
 ### Query Extraction
@@ -90,14 +92,3 @@ sudo bash run.sh
 * `go(canvas, query)`: this function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`
 * `prev(canvas)`: displays the previous image on the `canvas`
 * `next(canvas)`: displays the next image on the `canvas`
-
-
-## Precog Task
-* The project is done for the fufilment of __Recruitment Tasks - Spring to Summer 2017 : Task D__ by Precog IIIT D
-* The project asked for minimum 1000 memes but I have scraped only 835 memes. The scraper is capable of acquiring a lot of memes, even
-more than thousand but because of the deadline I focussed more on testing than scraping. For more memes, please run the bash file `collect.sh`
-
-### Applicant Details:
-* Name:						Aniq Ur Rahman
-* Email ID:					aniqrah@gmail.com
-* GitHub/GitLab/BitBucket:	@Aniq55

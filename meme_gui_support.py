@@ -1,7 +1,9 @@
 import sys
+import subprocess
 from os import listdir
 from os.path import isfile, join
 from search import *
+
 
 try:
     from Tkinter import *
@@ -49,7 +51,43 @@ def display(canvas, image_path):
 	gif1 = ImageTk.PhotoImage(image= x.resize((300,300),Image.ANTIALIAS))
 	canvas.create_image(200,150, image = gif1)
 	canvas.gif1=gif1
+	
+def settings():
+	# Collecting Subreddits
+	root = Tk()
+	root.title("Settings:User Input")
+	root.geometry("300x100+420+166")
+	label = Label(root, text ="Enter the subreddits, separated by commas")
+	label.pack(side=TOP)
+	e= Entry(root)
+	e.place(relx=0.15, rely=0.20, relheight=0.30
+                , relwidth=0.65)
+	def callback():
+		msg= e.get().split(',')
+		temp1=open('./temp.sh', 'wb')
+		with open('./collect.sh', 'r') as f:
+			for line in f:
+				if line.startswith("python .."):
+					line=line.strip()
+					for i in range(0,len(msg)):
+						line = line + " " + msg[i]
+					line=line+"\n"
+				temp1.write(bytes(line))
+		#temp1.write(bytes("\n chmod a+x temp.sh", "utf-8"))
+		temp1.close()
+		#shutil.move("./temp1.txt", "./temp.sh")
+		subprocess.call("chmod a+x temp.sh", shell=True)
+		subprocess.call("./temp.sh", shell=True) #Calling the collect bash script
+		root.destroy()
+		
+	def callbackerr():
+		root.destroy()
+	b = Button(root, text = "COLLECT", command = callback)
+	b.place(relx=0.05, rely=0.7, height=26, width=67)
+	c = Button(root, text = "CLOSE", command = callbackerr)
+	c.place(relx=0.73, rely = 0.7, height=26, width=67)
 
+	root.mainloop()
 def go(canvas, query):
 	getMemeList(query)
 	imageList= m.memeList
