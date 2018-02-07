@@ -66,6 +66,8 @@ class Meme_Finder:
         self.prev_menu(top) # Swith to previous meme, (C-1)%N
 
         self.next_menu(top) # Swith to next meme, (C+1)%N
+        
+        self.settings(top)
 
         
 
@@ -82,6 +84,16 @@ class Meme_Finder:
 
         top.geometry("459x450+420+166")
         top.title("Meme Finder")
+        
+    def settings(self, top):
+    	# Intiate Settings Dropdown
+	
+	self.menubar = Menu(top)
+	self.filemenu= Menu(self.menubar, tearoff=0)
+	self.filemenu.add_command(label="Enter subreddits to collect", command= lambda: meme_gui_support.settings())
+	self.menubar.add_cascade(label="Settings", menu=self.filemenu)
+	top.config(menu=self.menubar)
+	self.menubar.post(0,0)
     
     def next_menu(self,top):
         # Swith to next meme, (C+1)%N
@@ -147,6 +159,7 @@ class Meme_Finder:
         self.Canvas1.configure(relief=RIDGE)
         self.Canvas1.configure(selectbackground="#c4c4c4")
         self.Canvas1.configure(width=414)
+
 
 if __name__ == '__main__':
     vp_start_gui()
