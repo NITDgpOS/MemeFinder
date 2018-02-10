@@ -53,6 +53,7 @@ def display(canvas, image_path):
 	canvas.gif1=gif1
 	
 def settings_collect():
+
 	# Collecting Subreddits
 	root = Tk()
 	root.title("Settings:User Input")
@@ -124,6 +125,7 @@ def settings_add():
 	c.place(relx=0.73, rely = 0.7, height=26, width=67)
 
 	root.mainloop()
+
 def go(canvas, query):
 	getMemeList(query)
 	imageList= m.memeList
