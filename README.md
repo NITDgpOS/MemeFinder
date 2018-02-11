@@ -46,9 +46,13 @@ sudo bash run.sh
 sudo bash collect.sh
 ```
 * The bash script prepares the database which allows the Meme Engine to function properly
-*  To run the Meme Retrieval Engine (Meme Finder) type
+* To run the Meme Retrieval Engine (Meme Finder) type
 ```
 sudo bash run.sh
+```
+* To add new meme subreddits to the already present list
+```
+sudo bash add.sh
 ```
 * Enter the query in the text field and click on `Go`
 * The memes are sorted based on relevance
@@ -68,7 +72,6 @@ sudo bash run.sh
 * Adding functionality to the progress bar
 * Correct the size scaling of memes for display on the canvas
 * Adding feature to flush stored memes
-* Creating an option to enter the names of subreddits to scrape from
 * Storing popular meme templates and checking images for similarity and associating special keywords
 
 ## Documentation
@@ -89,6 +92,8 @@ sudo bash run.sh
 * `meme`: class which contains vital information like `memeList` and `currentImage` and the object of this class is very important in the functioning of the GUI
 * `getMemeList(query)`: gets the list of memes which match the given `query`
 * `display(canvas, image_path)`: displays the image at `image_path` on the `canvas` in the GUI
+* `settings_collect()`: prompts the user to enter names of subreddits to collect memes from
+* `settings_add()`: prompts the user to search for new meme subreddits by entering relevant keywords
 * `go(canvas, query)`: this function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`
 * `prev(canvas)`: displays the previous image on the `canvas`
 * `next(canvas)`: displays the next image on the `canvas`
