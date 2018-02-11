@@ -3,14 +3,72 @@ from nltk.corpus import wordnet
 import pickle
 
 
+from bs4 import BeautifulSoup
+import urllib2
+
+
 # Generated extended related queries based on the user query
 def generateQuery(query):
 	queryList= (" ".join(("".join((char if char.isalpha() else " ") for char in query)).split(','))).split()
 	keywords = []
-	for query in queryList: 
+	for query in queryList:
 		for syn in wordnet.synsets(query):
 		    for l in syn.lemmas():
 		        keywords.append(l.name())
+	#print(keywords)
+
+	if(len(keywords)==0):
+		print("sorry not present in dictionary")
+		#web scrape the word store it in a variable
+
+
+
+		internet_slang_you_want_to_search=query
+		url='http://onlineslangdictionary.com/meaning-definition-of/'+str(internet_slang_you_want_to_search)
+
+		page=urllib2.urlopen(url)
+
+		soup=BeautifulSoup(page.read(), "html.parser")
+
+		text=soup.find(class_="definitions").get_text()
+
+		words = text.split()
+		'''
+		for word in words:
+		    print(word)
+		'''
+		    
+
+		for k in range(len(words)):
+		    if(words[k][0]=='"'  ) :
+		        i=k
+		        #print(i)
+		    if(words[k][-1]=='"' or words[k][-2]== '"'):
+		        j=k
+		        #print(j)
+		        break
+
+		words[i]=words[i][1:]
+
+		if (words[j][-2]=='"'):
+		    words[j]=words[j][0:-2]
+		else:
+		    words[j]=words[j][0:-1]
+
+
+
+		fetched=words[i:j+1]
+
+		print(fetched)
+		#query=get the full sentence of lmao
+		#queryList= (" ".join(("".join((char if char.isalpha() else " ") for char in query)).split(','))).split()
+
+		for query in fetched:
+			for syn in wordnet.synsets(query):
+			    for l in syn.lemmas():
+			        keywords.append(l.name())
+
+        print(keywords)
 	return keywords
 
 # Creates a dictionary of file name and associated text attribues from the database
@@ -61,7 +119,7 @@ def getScore(INDEX, keywords):
 
 	import operator
 	sorted_list= sorted(matched.items(), key= operator.itemgetter(1))
-	
+
 	# return scoreList, matched_files
 	memes= [ x[0] for x in sorted_list]
 	return memes[::-1]
