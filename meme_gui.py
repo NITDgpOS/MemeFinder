@@ -69,6 +69,7 @@ class Meme_Finder:
         
         self.settings(top)
 
+
         
 
     def set_style(self,top,_bgcolor,_fgcolor,_compcolor,_ana2color):
@@ -90,7 +91,9 @@ class Meme_Finder:
 	
 	self.menubar = Menu(top)
 	self.filemenu= Menu(self.menubar, tearoff=0)
-	self.filemenu.add_command(label="Enter subreddits to collect", command= lambda: meme_gui_support.settings())
+	self.filemenu.add_command(label="Enter subreddits to collect", command= lambda: meme_gui_support.settings_collect())
+	self.filemenu.add_command(label="Add new subreddits", command= lambda: meme_gui_support.settings_add())
+
 	self.menubar.add_cascade(label="Settings", menu=self.filemenu)
 	top.config(menu=self.menubar)
 	self.menubar.post(0,0)
