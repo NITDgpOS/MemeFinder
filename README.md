@@ -54,6 +54,11 @@ sudo bash run.sh
 * The memes are sorted based on relevance
 * The selected memes can be browsed using the `Next` and `Previous` buttons
 
+### Add new subreddits to the list 
+```
+sudo bash add.sh
+```
+
 ### Requirements
 * cv2 (OpenCV)
 * pytesseract
@@ -68,7 +73,6 @@ sudo bash run.sh
 * Adding functionality to the progress bar
 * Correct the size scaling of memes for display on the canvas
 * Adding feature to flush stored memes
-* Creating an option to enter the names of subreddits to scrape from
 * Storing popular meme templates and checking images for similarity and associating special keywords
 
 ## Documentation
