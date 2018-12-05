@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for meme in memes_list %}
-        {% if (loop.index + 1) % 3 == 0 %}
+    <div class="container memes">
+        {% for memes_batch in memes_list | batch(3, '&nbsp;') %}
             <div class="row">
-        {% endif %}
-
-        <div class="meme-card one-third column">
-            <img src="{{ url_for('static', filename=meme) }}" class="meme-image">
-        </div>
-
-        {% if (loop.index + 1) % 3 == 0 %}
+              {% for meme in memes_batch %}
+                <div class="meme-card one-third column">
+                    <img 
+                        src="{{ url_for('static', filename=meme) }}" 
+                        class="meme-image" 
+                        onerror="imageFail()" />
+                </div>
+              {% endfor %}
             </div>
-        {% endif %}
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}
