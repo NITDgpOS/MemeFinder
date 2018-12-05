@@ -3,11 +3,11 @@ from nltk.corpus import wordnet
 import pickle
 import os
 
-
+DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 def generate_query(query):
     """ Generated extended related queries based on the user query. """
-    queryList = (" ".join(("".join((char if char.isalpha() else " ")
+    queryList = (' '.join(("".join((char if char.isalpha() else ' ')
                                    for char in query)).split(','))).split()
     keywords = []
     for query in queryList:
@@ -29,7 +29,7 @@ def create_index(database):
             text = (' '.join((''.join((char if char.isalpha() else ' ')
                                       for char in text)).split(','))).split()
             INDEX[filename] = text
-        with open('./index.pickle', 'wb') as index_file:
+        with open(os.path.join(DIRNAME, 'index.pickle'), 'wb') as index_file:
             pickle.dump(INDEX, index_file)
     return INDEX
 
@@ -46,7 +46,7 @@ def get_score(INDEX, keywords):
         for i in range(total_entries):
             if word.lower() in [x.lower() for x in valueList[i]]:
                 score_list[i] = score_list[i] + 1
-    with open('./score.pickle', 'wb') as score_file:
+    with open(os.path.join(DIRNAME, 'score.pickle'), 'wb') as score_file:
         pickle.dump(score_list, score_file)
 
     matched_files = []
