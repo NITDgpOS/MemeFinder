@@ -9,7 +9,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     memes = []
-    if 'q' in request.form:
-        q = request.form ['q']
+    if 'q' in request.args:
+        q = request.args ['q']
         memes = util.getMemes(q)
+        print (memes)
     return render_template('index.html', memes=memes)
