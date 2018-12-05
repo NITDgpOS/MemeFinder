@@ -7,7 +7,7 @@
               {% for meme in memes_batch %}
                 <div class="meme-card one-third column">
                     <img 
-                        src="{{ url_for('static', filename=meme) }}" 
+                        src="{{ url_for('get_processed_meme', filename=meme) }}" 
                         class="meme-image" 
                         />
                 </div>
