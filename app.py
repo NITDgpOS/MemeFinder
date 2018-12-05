@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flask import request
-from .util import getMemes
+from lib.util import getMemes
 
 # CONFIG
 app = Flask(__name__)
@@ -17,6 +17,15 @@ def index():
         q = request.args['q']
         memes = getMemes(q)
     else:
-        memes = None
+        memes = []
 
     return render_template('index.html', memes_list=memes)
+
+
+@app.route('/cdn/<path:filename>')
+def get_processed_meme(filename):
+    """
+        Since in the current version of the application we store the processed image files,
+        this function serves those image files to processed/ url.
+    """
+    return send_from_directory('./processed', filename)
