@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, render_template
 
 # * CONFIG
 app = Flask(__name__)
@@ -6,4 +6,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello World'
+    return render_template('index.html')
