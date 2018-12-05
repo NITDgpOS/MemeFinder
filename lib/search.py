@@ -75,9 +75,3 @@ def load_index(index_name):
     """ Returns an object from given pickle file. """
     index_file = open(index_name, "rb")
     return pickle.load(index_file)
-
-# print(generateQuery(raw_input()))
-
-# print(len(create_index("data3.txt")))
-
-# print(getScore(create_index("data3.txt"), generateQuery('team sucks')))
