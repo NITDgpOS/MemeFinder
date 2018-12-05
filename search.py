@@ -3,8 +3,8 @@ from nltk.corpus import wordnet
 import pickle
 
 
-# Generated extended related queries based on the user query
 def generateQuery(query):
+    """  Generated extended related queries based on the user query. """
     queryList = (" ".join(("".join((char if char.isalpha() else " ")
                                    for char in query)).split(','))).split()
     keywords = []
@@ -14,11 +14,9 @@ def generateQuery(query):
                 keywords.append(l.name())
     return keywords
 
-# Creates a dictionary of file name and associated text attribues from the
-# database
-
 
 def create_index(database):
+    """ Creates a dictionary of file name and associated text attribues from the database. """
     db = open(database, 'r')
     INDEX = {}
     db.readline()  # ignoring the column headers
@@ -34,14 +32,12 @@ def create_index(database):
     index_file.close()
     return INDEX
 
-# Scores each entry in the database on the basis of its relevance to the
-# keywords
-
 
 def getScore(INDEX, keywords):
+    """ Scores each entry in the database on the basis of its relevance to the keywords. """
     totalEntries = len(INDEX)
-    keyList = INDEX.keys()
-    valueList = INDEX.values()
+    keyList = list(INDEX.keys())
+    valueList = list(INDEX.values())
     serialList = list(range(totalEntries))
     scoreList = [0 for i in range(totalEntries)]
     # Assigning score proportional to relevance
@@ -76,6 +72,7 @@ def getScore(INDEX, keywords):
 
 
 def load_index(index_name):
+    """ Returns an object from given pickle file. """
     index_file = open(index_name, "rb")
     return pickle.load(index_file)
 
