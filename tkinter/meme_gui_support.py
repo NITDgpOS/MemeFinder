@@ -44,7 +44,7 @@ def destroy_window():
 
 
 def getMemeList(query):
-    source = 'data2.txt'
+    source = '../data2.txt'
     m.memeList = getScore(create_index(source), generateQuery(query))
 
 
