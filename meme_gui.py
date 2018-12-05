@@ -112,7 +112,7 @@ class Meme_Finder:
         self.nextimg = Button(top)
         self.nextimg.place(relx=0.81, rely=0.89, height=26, width=64)
         self.nextimg.configure(activebackground="#d9d9d9")
-        self.nextimg.configure(text='''Next''')
+        self.nextimg.configure(text='Next')
         self.nextimg.configure(width=64)
         self.nextimg.configure(
             command=lambda: meme_gui_support.next(
@@ -123,7 +123,7 @@ class Meme_Finder:
         self.previmg = Button(top)
         self.previmg.place(relx=0.65, rely=0.89, height=26, width=66)
         self.previmg.configure(activebackground="#d9d9d9")
-        self.previmg.configure(text='''Previous''')
+        self.previmg.configure(text='Previous')
         self.previmg.configure(width=66)
         self.previmg.configure(
             command=lambda: meme_gui_support.prev(
@@ -151,14 +151,14 @@ class Meme_Finder:
         self.TLabel1.configure(background="#d9d9d9")
         self.TLabel1.configure(foreground="#000000")
         self.TLabel1.configure(relief=FLAT)
-        self.TLabel1.configure(text='''Search''')
+        self.TLabel1.configure(text='Search')
 
     def search_button(self, top):
          # Intiate Search Engine Button
         self.go = Button(top)
         self.go.place(relx=0.81, rely=0.06, height=26, width=67)
         self.go.configure(activebackground="#d9d9d9")
-        self.go.configure(text='''Go''')
+        self.go.configure(text='Go')
         self.go.configure(
             command=lambda: meme_gui_support.go(
                 self.Canvas1,
