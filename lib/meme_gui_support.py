@@ -1,19 +1,21 @@
+#  ____   _____  _____  _____  _____  _____  _____  _____  _____  ____  
+# |    \ |   __||  _  || __  ||   __||     ||  _  ||_   _||   __||    \ 
+# |  |  ||   __||   __||    -||   __||   --||     |  | |  |   __||  |  |
+# |____/ |_____||__|   |__|__||_____||_____||__|__|  |_|  |_____||____/
+
 import sys
 import subprocess
 from os import listdir
 from os.path import isfile, join
-from search import *
+import search
 
 
 try:
     from Tkinter import *
-except ImportError:
-    from tkinter import *
-
-try:
     import ttk
     py3 = 0
 except ImportError:
+    from tkinter import *
     import tkinter.ttk as ttk
     py3 = 1
 
@@ -45,7 +47,8 @@ def destroy_window():
 
 def getMemeList(query):
     source = 'data2.txt'
-    m.memeList = get_score(create_index(source), generate_query(query))
+    m.memeList = search.get_score(search.create_index(
+        source), search.generate_query(query))
 
 
 def display(canvas, image_path):

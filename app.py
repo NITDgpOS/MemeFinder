@@ -4,6 +4,7 @@ from lib.util import getMemes
 
 # CONFIG
 app = Flask(__name__)
+app.config['MEMES_DIRECTORY'] = 'processed'
 
 
 @app.route('/')
@@ -22,10 +23,10 @@ def index():
     return render_template('index.html', memes_list=memes)
 
 
-@app.route('/cdn/<path:filename>')
+@app.route('/processed/<path:filename>')
 def get_processed_meme(filename):
     """
         Since in the current version of the application we store the processed image files,
         this function serves those image files to processed/ url.
     """
-    return send_from_directory('./processed', filename)
+    return send_from_directory(app.config['MEMES_DIRECTORY'], filename)

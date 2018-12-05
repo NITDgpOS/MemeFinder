@@ -1,1 +1,0 @@
-print('Tkinter GUI has been deprecated.')

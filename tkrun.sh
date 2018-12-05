@@ -1,1 +1,1 @@
-python tkinter/meme_gui.py
+python lib/meme_gui.py
