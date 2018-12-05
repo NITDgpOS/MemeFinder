@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/MemeFinder/Lobby](https://badges.gitter.im/MemeFinder/Lobby.svg)](https://gitter.im/MemeFinder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Author: __Aniq Ur Rahman__ | @Aniq55
 
-![Demo](memefinder.png)
+![Demo](docs/images/ss_flask.png)
 ## Project Description
 
 ### Technologies employed
