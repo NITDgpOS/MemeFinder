@@ -1,0 +1,15 @@
+#header {
+  text-align: center;
+}
+
+.memes {
+  max-width: 90vw;
+}
+
+#searchbox {
+  width: 100%;
+  height: 4rem;
+  padding: 4px;
+  border: 1px dotted black;
+  margin-bottom: 1rem;
+}

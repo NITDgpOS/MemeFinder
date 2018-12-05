@@ -1,4 +1,4 @@
-mkdir server/static
-mkdir server/static/memes
-cp processed/* server/static/memes/
-FLASK_ENV=development FLASK_APP=server/app.py flask run
+mkdir static
+mkdir static/memes
+cp processed/* static/memes/
+FLASK_ENV=development FLASK_APP=app.py flask run
