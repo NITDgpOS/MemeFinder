@@ -1,6 +1,6 @@
 from .search import get_score, create_index, generate_query
 
-source = 'data2.txt'
+source = 'database/data2.txt'
 
 
 def getMemes(query):

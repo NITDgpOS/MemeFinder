@@ -7,7 +7,7 @@ import os
 from autocorrect import spell
 import string
 
-with open('database.txt', 'r') as fread, open('data2.txt', 'a+') as fwrite:
+with open('database/database.txt', 'r') as fread, open('database/data2.txt', 'a+') as fwrite:
     def extractText(image_path):
         try:
             image = cv2.imread(image_path)
