@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ memes }}
+    {{ for meme in memes_list }}
+        <img src="{{ url_for('static', filename=meme) }}"">
+    {{ endfor }}
 {% endblock %}

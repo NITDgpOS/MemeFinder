@@ -10,7 +10,7 @@ app = Flask(__name__)
 def index():
     memes = []
     if 'q' in request.args:
-        q = request.args ['q']
+        q = request.args['q']
         memes = util.getMemes(q)
         print (memes)
-    return render_template('index.html', memes=memes)
+    return render_template('index.html', memes_list=memes)
