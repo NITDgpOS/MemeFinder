@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container memes">
+        {% for memes_batch in memes_list | batch(3, '&nbsp;') %}
+            <div class="row">
+              {% for meme in memes_batch %}
+                <div class="meme-card one-third column">
+                    <img 
+                        src="{{ url_for('static', filename=meme) }}" 
+                        class="meme-image" 
+                        />
+                </div>
+              {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

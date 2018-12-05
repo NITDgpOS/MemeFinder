@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      Basic Page Needs
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+    <meta charset="utf-8" />
+    <title>Meme Retrieval Engine</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!--
+      Mobile Specific Metas
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--
+      FONT
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!--
+      CSS
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/skeleton.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/normalize.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+
+    <!--
+      Favicon
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/favicon.png') }}"
+    />
+  </head>
+  <body>
+    <!--
+      Primary Page Layout
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+
+    <div class="container" id="header">
+      <div class="row">
+        <img src="{{ url_for('static', filename='images/favicon.png') }}" />
+      </div>
+      <div class="row">
+        <div class="u-max-full-width"><h1>Meme Retrieval Engine</h1></div>
+      </div>
+    </div>
+
+    <div class="container memes">
+      <form action="/" method="GET">
+        <div class="row">
+          <label for="q">Search</label>
+          <input
+            name="q"
+            id="searchbox"
+            class="u-max-full-width"
+            placeholder="Cat, Son, Religion..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="row">
+          <button type="submit" class="button-primary u-pull-right">Go</button>
+        </div>
+      </form>
+    </div>
+
+    <!--
+      Memes, if any
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+
+    {% block content %} {% endblock %}
+
+    <!--
+      Scripts, if any
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+
+    {% block scripts %} {% endblock %}
+
+    <!--
+      End Document
+      ––––––––––––––––––––––––––––––––––––––––––––––––––
+    -->
+  </body>
+</html>
