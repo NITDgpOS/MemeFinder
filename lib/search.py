@@ -1,10 +1,14 @@
 import nltk
 from nltk.corpus import wordnet
+from pathlib import Path
 import pickle
+import os
+
+CWD = Path.cwd()
 
 
-def generateQuery(query):
-    """  Generated extended related queries based on the user query. """
+def generate_query(query):
+    """ Generated extended related queries based on the user query. """
     queryList = (" ".join(("".join((char if char.isalpha() else " ")
                                    for char in query)).split(','))).split()
     keywords = []
@@ -17,61 +21,63 @@ def generateQuery(query):
 
 def create_index(database):
     """ Creates a dictionary of file name and associated text attribues from the database. """
-    db = open(database, 'r')
-    INDEX = {}
-    db.readline()  # ignoring the column headers
-    for entry in db:
-        entry = entry.split(',')
-        filename = entry[0]
-        text = ' '.join(entry[1:])
-        text = (" ".join(("".join((char if char.isalpha() else " ")
-                                  for char in text)).split(','))).split()
-        INDEX[filename] = text
-    index_file = open("index.pickle", "wb")
-    pickle.dump(INDEX, index_file)
-    index_file.close()
+    database_path = os.path.join(CWD, database)
+    with open(database_path) as db:
+        db = open(database, 'r')
+        INDEX = {}
+        db.readline()  # ignoring the column headers
+        for entry in db:
+            entry = entry.split(',')
+            filename = entry[0]
+            text = ' '.join(entry[1:])
+            text = (' '.join((''.join((char if char.isalpha() else ' ')
+                                      for char in text)).split(','))).split()
+            INDEX[filename] = text
+        with open('index.pickle', 'wb') as index_file:
+            pickle.dump(INDEX, index_file)
     return INDEX
 
 
-def getScore(INDEX, keywords):
+def get_score(INDEX, keywords):
     """ Scores each entry in the database on the basis of its relevance to the keywords. """
-    totalEntries = len(INDEX)
-    keyList = list(INDEX.keys())
+    total_entries = len(INDEX)
+    key_list = list(INDEX.keys())
     valueList = list(INDEX.values())
-    serialList = list(range(totalEntries))
-    scoreList = [0 for i in range(totalEntries)]
+    serial_list = list(range(total_entries))
+    score_list = [0 for i in range(total_entries)]
     # Assigning score proportional to relevance
     for word in keywords:
-        for i in range(totalEntries):
+        for i in range(total_entries):
             if word.lower() in [x.lower() for x in valueList[i]]:
-                scoreList[i] = scoreList[i] + 1
-    score_file = open("score.pickle", "wb")
-    pickle.dump(scoreList, score_file)
+                score_list[i] = score_list[i] + 1
+    score_file = open('score.pickle', 'wb')
+    pickle.dump(score_list, score_file)
     score_file.close()
 
     matched_files = []
-    for t in range(len(scoreList)):
-        if scoreList[t] > 0:
-            matched_files.append(keyList[t])
+    for t in range(len(score_list)):
+        if score_list[t] > 0:
+            matched_files.append(key_list[t])
 
-    while 0 in scoreList:
-        scoreList.remove(0)
+    while 0 in score_list:
+        score_list.remove(0)
 
     matched = {}
-    l = len(scoreList)
+    l = len(score_list)
 
     for i in range(l):
-        matched[matched_files[i]] = scoreList[i]
+        matched[matched_files[i]] = score_list[i]
 
     import operator
     sorted_list = sorted(matched.items(), key=operator.itemgetter(1))
 
-    # return scoreList, matched_files
+    # Return score_list, matched_files
     memes = [x[0] for x in sorted_list]
     return memes[::-1]
 
 
 def load_index(index_name):
     """ Returns an object from given pickle file. """
-    index_file = open(index_name, "rb")
-    return pickle.load(index_file)
+    with open(index_name, 'rb') as index_file:
+        obj = pickle.load(index_file)
+    return obj

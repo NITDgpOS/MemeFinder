@@ -1,11 +1,15 @@
 import hashlib
 from os import listdir
+from pathlib import Path
 from os.path import isfile, join
 import subprocess
 import time
 import shutil
 
-db = open("../database.txt", "a+")
+CWD = Path.cwd()
+database = "database.txt"
+
+db = open(join(CWD, database), "a+")
 # db.write("file_location, attributes\n")
 
 source = 'raw/'

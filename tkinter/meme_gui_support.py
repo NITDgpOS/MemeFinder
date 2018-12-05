@@ -44,8 +44,8 @@ def destroy_window():
 
 
 def getMemeList(query):
-    source = '../data2.txt'
-    m.memeList = getScore(create_index(source), generateQuery(query))
+    source = 'data2.txt'
+    m.memeList = get_score(create_index(source), generate_query(query))
 
 
 def display(canvas, image_path):
