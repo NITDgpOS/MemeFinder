@@ -7,3 +7,4 @@ pytesseract>=0.1.7
 six>=1.11.0
 requests
 flask
+gunicorn

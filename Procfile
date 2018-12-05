@@ -1,1 +1,1 @@
-web: bash flask.sh
+web: gunicorn app:app
