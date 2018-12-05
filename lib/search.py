@@ -1,10 +1,8 @@
 import nltk
 from nltk.corpus import wordnet
-from pathlib import Path
 import pickle
 import os
 
-CWD = Path.cwd()
 
 
 def generate_query(query):
@@ -21,9 +19,7 @@ def generate_query(query):
 
 def create_index(database):
     """ Creates a dictionary of file name and associated text attribues from the database. """
-    database_path = os.path.join(CWD, database)
-    with open(database_path) as db:
-        db = open(database, 'r')
+    with open(database) as db:
         INDEX = {}
         db.readline()  # ignoring the column headers
         for entry in db:
@@ -33,7 +29,7 @@ def create_index(database):
             text = (' '.join((''.join((char if char.isalpha() else ' ')
                                       for char in text)).split(','))).split()
             INDEX[filename] = text
-        with open('index.pickle', 'wb') as index_file:
+        with open('./index.pickle', 'wb') as index_file:
             pickle.dump(INDEX, index_file)
     return INDEX
 
@@ -50,9 +46,8 @@ def get_score(INDEX, keywords):
         for i in range(total_entries):
             if word.lower() in [x.lower() for x in valueList[i]]:
                 score_list[i] = score_list[i] + 1
-    score_file = open('score.pickle', 'wb')
-    pickle.dump(score_list, score_file)
-    score_file.close()
+    with open('./score.pickle', 'wb') as score_file:
+        pickle.dump(score_list, score_file)
 
     matched_files = []
     for t in range(len(score_list)):

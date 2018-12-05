@@ -1,18 +1,13 @@
 from PIL import Image
 import pytesseract
 from pytesseract import image_to_string
-from pathlib import Path
 import os
 import cv2
 import os
 from autocorrect import spell
 import string
 
-CWD = Path.cwd()
-input_file = os.path.join(CWD, 'database.txt')
-output_file = os.path.join(CWD, 'data2.txt')
-
-with open(input_file, 'r') as fread, open(output_file, 'a+') as fwrite:
+with open('database.txt', 'r') as fread, open('data2.txt', 'a+') as fwrite:
     def extractText(image_path):
         try:
             image = cv2.imread(image_path)
