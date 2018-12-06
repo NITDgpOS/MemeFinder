@@ -1,7 +1,6 @@
 # Meme Retrieval Engine
 
-[![Join the chat at https://gitter.im/MemeFinder/Lobby](https://badges.gitter.im/MemeFinder/Lobby.svg)](https://gitter.im/MemeFinder/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-Author: __Aniq Ur Rahman__ | @Aniq55
+[![Join the chat at https://gitter.im/NIT-dgp/General](https://badges.gitter.im/MemeFinder/Lobby.svg)](https://gitter.im/NIT-dgp/General)
 
 ![Demo](docs/images/ss_flask.png)
 ## Project Description
