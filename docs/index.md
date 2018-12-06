@@ -2,6 +2,38 @@
 
 [Adding to documentation](./CONTRIBUTING.md)
 
+# Table of Contents
+
+- [Memefinder Documentation](#memefinder-documentation)
+  * [Script: `run.sh`](#script---runsh-)
+  * [Script: `add.sh`](#script---addsh-)
+  * [Script: `collect.sh`](#script---collectsh-)
+  * [Script: `tkrun.sh` **(DEPRECATED)**](#script---tkrunsh-----deprecated---)
+  * [Directory: `lib/`](#directory---lib--)
+    + [File: `standard.py`](#file---standardpy-)
+    + [File: `ocr.py`](#file---ocrpy-)
+    + [File: `search.py`](#file---searchpy-)
+      - [`generate_query(query)`](#-generate-query-query--)
+      - [`create_index(database)`](#-create-index-database--)
+      - [`get_score(INDEX, keywords)`](#-get-score-index--keywords--)
+      - [`load_index(index_name)`](#-load-index-index-name--)
+    + [File: `util.py`](#file---utilpy-)
+      - [`get_memes(query)`](#-get-memes-query--)
+    + [File: `meme_gui.py` **(DEPRECATED)**](#file---meme-guipy-----deprecated---)
+    + [File: `meme_gui_support.py` **(DEPRECATED)**](#file---meme-gui-supportpy-----deprecated---)
+      - [Class: `meme`](#class---meme-)
+      - [`getMemeList(query)`](#-getmemelist-query--)
+      - [`display(canvas, image_path)`](#-display-canvas--image-path--)
+      - [`go(canvas, query)`](#-go-canvas--query--)
+      - [`prev(canvas)`](#-prev-canvas--)
+      - [`next(canvas)`](#-next-canvas--)
+  * [Directory: `scraper/`](#directory---scraper--)
+    + [File: `api.py`](#file---apipy-)
+    + [File: `scraper.py`](#file---scraperpy-)
+  * [Directory: `database/`](#directory---database--)
+  * [Directory: `processed/`](#directory---processed--)
+  * [Directory: `raw/`](#directory---raw--)
+
 ---
 
 ## Script: `run.sh`
