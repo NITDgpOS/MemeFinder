@@ -8,7 +8,7 @@ from autocorrect import spell
 import string
 
 with open('database/database.txt', 'r') as fread, open('database/data2.txt', 'a+') as fwrite:
-    def extractText(image_path):
+    def extract_text(image_path):
         try:
             image = cv2.imread(image_path)
             if image is None:
@@ -44,7 +44,7 @@ with open('database/database.txt', 'r') as fread, open('database/data2.txt', 'a+
         for line in fread:
             if count > 0:
                 image_location = line.split(',')[0]
-                fromImage = extractText(image_location)
+                fromImage = extract_text(image_location)
                 if fromImage != "00000":
                     fwrite.write(
                         line[:-1] + "," + ''.join([i if ord(i) < 128 else "" for i in fromImage]) + "\n")
