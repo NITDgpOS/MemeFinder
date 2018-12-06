@@ -80,7 +80,7 @@ sudo bash add.sh
 * renames the memes present in `raw` folder to a  unique hex digest generated filename and moves it to `processed` folder
 
 ### `ocr.py`
-* `extractText(image_path)`: extracts text using OCR from the meme at `image_path`
+* `extract_text(image_path)`: extracts text using OCR from the meme at `image_path`
 
 ### `search.py`
 * `generate_query(query)`: Extends the query to include all synonyms related to the input query using nltk package

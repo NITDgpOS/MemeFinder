@@ -3,8 +3,8 @@ import json
 import sys
 import shutil
 
-for x in range(1, len(sys.argv)):
-    data = {'query': sys.argv[x]}
+for arg in sys.argv[1:]:
+    data = {'query': arg}
     headers = {
         'User-Agent': 'MemeFinder 1.0'
     }
@@ -13,22 +13,18 @@ for x in range(1, len(sys.argv)):
         params=data,
         headers=headers)
     res = response.json()
-    g = open("Meme1.txt", 'ab')
-    with open("Meme.txt", 'r') as f:
-        for line in f:
-            line = line.strip()
-            g.write(bytes(line + '\n'))
-    for r in res:
-        k = 0
-
-        f = open("Meme.txt", 'r')
-        msg = f.read().split(',')
-        for i in range(0, len(msg)):
-            if r['name'] == msg[i].strip():
-                k = k + 1
-        if k == 0:
-            g.write(bytes(',\n' + r['name']))
-        f.close()
-
-    g.close()
-shutil.move('Meme1.txt', 'Meme.txt')
+    with open('scraper/Meme1.txt', 'ab') as g:
+        with open("scraper/Meme.txt", 'r') as f:
+            for line in f:
+                line = line.strip()
+                g.write(bytes(line + '\n'))
+        for r in res:
+            k = 0
+            with open("scraper/Meme.txt", 'r') as f:
+                msg = f.read().split(',')
+                for i in range(0, len(msg)):
+                    if r['name'] == msg[i].strip():
+                        k = k + 1
+                if k == 0:
+                    g.write(bytes(',\n' + r['name']))
+shutil.move('scraper/Meme1.txt', 'scraper/Meme.txt')
