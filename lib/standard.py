@@ -5,7 +5,9 @@ import subprocess
 import time
 import shutil
 
-db = open("database.txt", "a+")
+database = "database/database.txt"
+
+db = open(database, "a+")
 # db.write("file_location, attributes\n")
 
 source = 'raw/'

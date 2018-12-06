@@ -1,14 +1,16 @@
+#  ____   _____  _____  _____  _____  _____  _____  _____  _____  ____  
+# |    \ |   __||  _  || __  ||   __||     ||  _  ||_   _||   __||    \ 
+# |  |  ||   __||   __||    -||   __||   --||     |  | |  |   __||  |  |
+# |____/ |_____||__|   |__|__||_____||_____||__|__|  |_|  |_____||____/
+
 import sys
 
 try:
     from Tkinter import *
-except ImportError:
-    from tkinter import *
-
-try:
     import ttk
     py3 = 0
 except ImportError:
+    from tkinter import *
     import tkinter.ttk as ttk
     py3 = 1
 
@@ -105,7 +107,7 @@ class Meme_Finder:
 
         self.menubar.add_cascade(label="Settings", menu=self.filemenu)
         top.config(menu=self.menubar)
-        self.menubar.post(0, 0)
+        # self.menubar.post(0, 0)
 
     def next_menu(self, top):
         # Swith to next meme, (C+1)%N

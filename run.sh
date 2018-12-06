@@ -1,1 +1,1 @@
-python meme_gui.py
+FLASK_ENV=development FLASK_APP=app.py flask run
