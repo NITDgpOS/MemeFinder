@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory
 from flask import request
-from lib.util import getMemes
+from lib.util import get_memes
 
 # CONFIG
 app = Flask(__name__)
@@ -16,7 +16,7 @@ def index():
     """
     if 'q' in request.args:
         q = request.args['q']
-        memes = getMemes(q)
+        memes = get_memes(q)
     else:
         memes = []
 
