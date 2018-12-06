@@ -8,5 +8,5 @@ def get_memes(query):
     memes = get_score(create_index(source), generate_query(query))
     memes = list(map(
         lambda e: e.replace('processed/', ''), memes
-        ))
+    ))
     return memes

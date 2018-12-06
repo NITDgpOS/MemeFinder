@@ -39,7 +39,6 @@ with open('database/database.txt', 'r') as fread, open('database/data2.txt', 'a+
         except BaseException:
             print("image skipped")
 
-
     try:
         count = 0
         for line in fread:

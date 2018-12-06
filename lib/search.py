@@ -5,6 +5,7 @@ import os
 
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
+
 def generate_query(query):
     """ Generated extended related queries based on the user query. """
     queryList = (' '.join(("".join((char if char.isalpha() else ' ')
