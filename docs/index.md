@@ -4,6 +4,24 @@
 
 ---
 
+## Script: `run.sh`
+
+Runs the flask server on `localhost:5000` in development mode.
+
+## Script: `add.sh`
+
+Adds subreddits to the web scraping list.
+
+## Script: `collect.sh`
+
+Collects memes from the subreddits in `Meme.txt`.
+
+## Script: `tkrun.sh` **(DEPRECATED)**
+
+Runs the deprecated tkinter application.
+
+---
+
 ## Directory: `lib/`
 
 Contains the files required for searching through the database.
