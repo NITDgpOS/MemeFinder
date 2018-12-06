@@ -18,4 +18,4 @@ If you are contributing to the documentation of the project, follow these guidel
 -----
 
 ## Table of contents generator:
-https://ecotrust-canada.github.io/markdown-toc/
+https://github.com/ekalinin/github-markdown-toc

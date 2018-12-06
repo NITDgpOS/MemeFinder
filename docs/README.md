@@ -2,37 +2,37 @@
 
 [Adding to documentation](./CONTRIBUTING.md)
 
-# Table of Contents
+## Table of Contents
 
-- [Memefinder Documentation](#memefinder-documentation)
-  * [Script: `run.sh`](#script---runsh-)
-  * [Script: `add.sh`](#script---addsh-)
-  * [Script: `collect.sh`](#script---collectsh-)
-  * [Script: `tkrun.sh` **(DEPRECATED)**](#script---tkrunsh-----deprecated---)
-  * [Directory: `lib/`](#directory---lib--)
-    + [File: `standard.py`](#file---standardpy-)
-    + [File: `ocr.py`](#file---ocrpy-)
-    + [File: `search.py`](#file---searchpy-)
-      - [`generate_query(query)`](#-generate-query-query--)
-      - [`create_index(database)`](#-create-index-database--)
-      - [`get_score(INDEX, keywords)`](#-get-score-index--keywords--)
-      - [`load_index(index_name)`](#-load-index-index-name--)
-    + [File: `util.py`](#file---utilpy-)
-      - [`get_memes(query)`](#-get-memes-query--)
-    + [File: `meme_gui.py` **(DEPRECATED)**](#file---meme-guipy-----deprecated---)
-    + [File: `meme_gui_support.py` **(DEPRECATED)**](#file---meme-gui-supportpy-----deprecated---)
-      - [Class: `meme`](#class---meme-)
-      - [`getMemeList(query)`](#-getmemelist-query--)
-      - [`display(canvas, image_path)`](#-display-canvas--image-path--)
-      - [`go(canvas, query)`](#-go-canvas--query--)
-      - [`prev(canvas)`](#-prev-canvas--)
-      - [`next(canvas)`](#-next-canvas--)
-  * [Directory: `scraper/`](#directory---scraper--)
-    + [File: `api.py`](#file---apipy-)
-    + [File: `scraper.py`](#file---scraperpy-)
-  * [Directory: `database/`](#directory---database--)
-  * [Directory: `processed/`](#directory---processed--)
-  * [Directory: `raw/`](#directory---raw--)
+   * [Memefinder Documentation](#memefinder-documentation)
+      * [Script: run.sh](#script-runsh)
+      * [Script: add.sh](#script-addsh)
+      * [Script: collect.sh](#script-collectsh)
+      * [Script: tkrun.sh (DEPRECATED)](#script-tkrunsh-deprecated)
+      * [Directory: lib/](#directory-lib)
+         * [File: standard.py](#file-standardpy)
+         * [File: ocr.py](#file-ocrpy)
+         * [File: search.py](#file-searchpy)
+            * [generate_query(query)](#generate_queryquery)
+            * [create_index(database)](#create_indexdatabase)
+            * [get_score(INDEX, keywords)](#get_scoreindex-keywords)
+            * [load_index(index_name)](#load_indexindex_name)
+         * [File: util.py](#file-utilpy)
+            * [get_memes(query)](#get_memesquery)
+         * [File: meme_gui.py (DEPRECATED)](#file-meme_guipy-deprecated)
+         * [File: meme_gui_support.py (DEPRECATED)](#file-meme_gui_supportpy-deprecated)
+            * [Class: meme](#class-meme)
+            * [getMemeList(query)](#getmemelistquery)
+            * [display(canvas, image_path)](#displaycanvas-image_path)
+            * [go(canvas, query)](#gocanvas-query)
+            * [prev(canvas)](#prevcanvas)
+            * [next(canvas)](#nextcanvas)
+      * [Directory: scraper/](#directory-scraper)
+         * [File: api.py](#file-apipy)
+         * [File: scraper.py](#file-scraperpy)
+      * [Directory: database/](#directory-database)
+      * [Directory: processed/](#directory-processed)
+      * [Directory: raw/](#directory-raw)
 
 ---
 
@@ -48,7 +48,7 @@ Adds subreddits to the web scraping list.
 
 Collects memes from the subreddits in `Meme.txt`.
 
-## Script: `tkrun.sh` **(DEPRECATED)**
+## Script: `tkrun.sh` (DEPRECATED)
 
 Runs the deprecated tkinter application.
 
@@ -93,12 +93,12 @@ Use the functions here for a higher level abstraction of the project.
 
 Returns list of meme files from the database based on the `query`.
 
-### File: `meme_gui.py` **(DEPRECATED)**
+### File: `meme_gui.py` (DEPRECATED)
 
 Starts the deprecated Tkinter GUI of the project.
 Will be removed in the future.
 
-### File: `meme_gui_support.py` **(DEPRECATED)**
+### File: `meme_gui_support.py` (DEPRECATED)
 
 Will be removed in the future.
 
