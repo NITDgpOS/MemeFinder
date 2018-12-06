@@ -2,7 +2,7 @@
 
 [Adding to documentation](./CONTRIBUTING.md)
 
-## Table of Contents
+**Table of Contents**
 
    * [Memefinder Documentation](#memefinder-documentation)
       * [Script: run.sh](#script-runsh)
