@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container memes">
-        {% for memes_batch in memes_list | batch(3, '&nbsp;') %}
+        {% for memes_batch in memes_list | batch(3) %}
             <div class="row">
               {% for meme in memes_batch %}
                 <div class="meme-card one-third column">
