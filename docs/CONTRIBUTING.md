@@ -1,6 +1,8 @@
 CONTRIBUTING TO DOCUMENTATION
 =============================
 
+If you are contributing to the documentation of the project, follow these guidelines:
+
 * `##` for directory
 * `###` for file
     - If the file does not have any functions in it, describe what the file does.

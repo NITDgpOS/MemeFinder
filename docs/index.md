@@ -1,13 +1,12 @@
-Memefinder Documentation
-========================
+# Memefinder Documentation
 
 [Adding to documentation](./CONTRIBUTING.md)
 
------
+---
 
 ## Directory: `lib/`
 
-This directory contains the files required for searching through the database.
+Contains the files required for searching through the database.
 
 ### File: `standard.py`
 
@@ -25,7 +24,7 @@ Extends the query to include all synonyms related to the input query using nltk 
 
 #### `create_index(database)`
 
-Creates an dictionary (index) of all memes stored in the database, where the __filename__ is the `key` and the __associated text__ is the `value`.
+Creates an dictionary (index) of all memes stored in the database, where the **filename** is the `key` and the **associated text** is the `value`.
 
 #### `get_score(INDEX, keywords)`
 
@@ -37,7 +36,8 @@ Loads an index dictionary from `index_name` using `pickle` library.
 
 ### File: `util.py`
 
-This file is used for the flask application. Use the functions here for a higher level abstraction of the project.
+Used for the flask application.
+Use the functions here for a higher level abstraction of the project.
 
 #### `get_memes(query)`
 
@@ -66,7 +66,7 @@ Displays the image at `image_path` on the `canvas` in the GUI.
 
 #### `go(canvas, query)`
 
-This function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`.
+Initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`.
 
 #### `prev(canvas)`
 
@@ -76,3 +76,34 @@ Displays the previous image on the `canvas`.
 
 Displays the next image on the `canvas`.
 
+---
+
+## Directory: `scraper/`
+
+Contains files related to the web scraping part of the project.
+
+### File: `api.py`
+
+Finds a list of meme subreddits using reddit REST api. Stores the list in `scraper/Meme.txt`.
+
+### File: `scraper.py`
+
+Scraps meme images from the subreddits in `scraper/Meme.txt` and stores them in `processed/` directory.
+
+**NOTE: Documentation Pending.** Need to document the functions.
+
+---
+
+## Directory: `database/`
+
+Store for the txt-based comma separated databases.
+
+## Directory: `processed/`
+
+This is a store for image files with standardised file names.
+*Will be created after running `collect.sh`*
+
+## Directory: `raw/`
+
+This is a store for image files from web scraping.
+*Will be created after running `collect.sh`*
