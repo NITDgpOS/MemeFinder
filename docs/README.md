@@ -80,7 +80,7 @@ Creates an new collection of all memes stored in the database, where the __filen
 
 Checks if there is update in data and correspondingly calls `create_index_db()`
 
-#### `get_score_db(INDEX, keywords)`
+#### `get_score_db(keywords)`
 
 Creates a relevance based score list matched with the filenames in collection `INDEX` for the given `keywords`
 
