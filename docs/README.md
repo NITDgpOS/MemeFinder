@@ -10,8 +10,6 @@
       * [Script: collect.sh](#script-collectsh)
       * [Script: tkrun.sh (DEPRECATED)](#script-tkrunsh-deprecated)
       * [Directory: lib/](#directory-lib)
-         * [File: standard.py](#file-standardpy)
-         * [File: ocr.py](#file-ocrpy)
          * [File: search.py](#file-searchpy)
             * [generate_query(query)](#generate_queryquery)
             * [create_index(database)](#create_indexdatabase)
@@ -30,6 +28,8 @@
       * [Directory: scraper/](#directory-scraper)
          * [File: api.py](#file-apipy)
          * [File: scraper.py](#file-scraperpy)
+         * [File: standard.py](#file-standardpy)
+         * [File: ocr.py](#file-ocrpy)
       * [Directory: database/](#directory-database)
       * [Directory: processed/](#directory-processed)
       * [Directory: raw/](#directory-raw)
@@ -57,14 +57,6 @@ Runs the deprecated tkinter application.
 ## Directory: `lib/`
 
 Contains the files required for searching through the database.
-
-### File: `standard.py`
-
-Renames the memes present in `raw/` folder to a unique hex-digest generated filename and moves it to `processed/` folder.
-
-### File: `ocr.py`
-
-Extracts text using Tesseract OCR from the meme from the `raw/` folder.
 
 ### File: `search.py`
 
@@ -140,13 +132,24 @@ Finds a list of meme subreddits using reddit REST api. Stores the list in `scrap
 
 Scraps meme images from the subreddits in `scraper/Meme.txt` and stores them in `processed/` directory.
 
-**NOTE: Documentation Pending.** Need to document the functions.
+### File: `standard.py`
+
+Renames the memes present in `raw/` folder to a unique hex-digest generated filename and moves it to `processed/` folder.
+
+### File: `ocr.py`
+
+Extracts text using Tesseract OCR from the meme from the `raw/` folder.
 
 ---
 
 ## Directory: `database/`
 
 Store for the txt-based comma separated databases.
+
+## Directory: `temp/`
+
+Temperory cache for storing images.
+*Will be created and removed by `collect.sh`*
 
 ## Directory: `processed/`
 
@@ -156,4 +159,4 @@ This is a store for image files with standardised file names.
 ## Directory: `raw/`
 
 This is a store for image files from web scraping.
-*Will be created after running `collect.sh`*
+*Will be created and removed by `collect.sh`*

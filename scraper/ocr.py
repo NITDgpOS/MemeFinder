@@ -23,7 +23,7 @@ def extractText(image_path):
 
         # write the grayscale image to disk as a temporary file so we can
         # apply OCR to it
-        filename = "{}.png".format(os.getpid())
+        filename = "scraper/{}.png".format(os.getpid())
         cv2.imwrite(filename, gray)
 
         # load the image as a PIL/Pillow image, apply OCR, and then delete
@@ -35,7 +35,7 @@ def extractText(image_path):
         extracted = list()
         for t in text:
             for c in chars_to_remove:
-                t = string.replace(t, c, '')
+                t = t.replace(c, '')
             extracted.append(spell(t))
         return(' '.join(extracted))
 
@@ -55,6 +55,5 @@ try:
                 'ocr_out' : [i if ord(i) < 128 else "" for i in fromImage]
             }
             db_pre_ocr.insert_one(add_image)
-
 except BaseException:
     print("image skipped")
