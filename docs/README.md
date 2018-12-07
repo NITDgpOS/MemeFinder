@@ -68,7 +68,7 @@ Extracts text using Tesseract OCR from the meme from the `raw/` folder.
 
 ### File: `search.py`
 
-#### `generate_query(query)`
+#### `generate_query_db(query)`
 
 Extends the query to include all synonyms related to the input query using nltk package.
 
