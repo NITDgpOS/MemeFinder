@@ -83,10 +83,10 @@ sudo bash add.sh
 * `extract_text(image_path)`: extracts text using OCR from the meme at `image_path`
 
 ### `search.py`
-* `generate_query(query)`: Extends the query to include all synonyms related to the input query using nltk package
-* `create_index(database)`: creates an dictionary (index) of all memes stored in the database, where the __filename__ is the `key` and the __associated text__ is the `value`
-* `update_required()`: Checks if there is update in data and correspondingly calls `create_index`
-* `get_score_db(INDEX, keywords)`: Creates a relevance based score list matched with the filenames in collection `INDEX` for the given `keywords` 
+* `generate_query_db(query)`: Extends the query to include all synonyms related to the input query using nltk package
+* `create_index_db()`: Creates an new collection of all memes stored in the database, where the __filename__ as `key` and the __associated text__ as `value`. Along with that 'score' field is added to map ranking in 'get_score_db()'
+* `update_required()`: Checks if there is update in data and correspondingly calls `create_index_db()`
+* `get_score_db(keywords)`: Creates a relevance based score list matched with the filenames in collection `INDEX` for the given `keywords`
 
 ### `meme_gui_support.py`
 * `meme`: class which contains vital information like `memeList` and `currentImage` and the object of this class is very important in the functioning of the GUI
