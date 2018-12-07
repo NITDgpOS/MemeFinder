@@ -26,7 +26,7 @@ def create_index_db():
     models.dropCollection('INDEX')
     data = data_db.find({})
     for entry in data:
-        all_words = entry['attribute']+(entry['ocr_out'])
+        all_words = entry['attributes']+(entry['ocr_out'])
 
         words = (" ".join(("".join((char if char.isalpha() else " ")
                                    for char in (all_words)).split(','))).split())

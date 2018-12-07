@@ -54,7 +54,7 @@ try:
 
             add_image = {
                 'location': image['location'],
-                'attribute': image['attributes'],
+                'attributes': image['attributes'],
                 'ocr_out': fromImageClean
             }
             db_post_ocr.insert_one(add_image)

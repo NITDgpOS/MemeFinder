@@ -23,6 +23,6 @@ for f in raw_files:
     shutil.move("{}{}".format(source, f), location)
     files_data = {
         'location': location,
-        'attribute': fname.split('.')[0]
+        'attributes': fname.split('.')[0]
     }
     db.insert_one(files_data)

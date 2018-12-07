@@ -5,9 +5,6 @@
 # No memes to be tracked
 processed/
 
-# Pickle files are not needed
-lib/*.pickle
-
 # No sharing the same database
 database/
 
