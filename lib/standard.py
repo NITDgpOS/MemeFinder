@@ -4,17 +4,17 @@ from os.path import isfile, join
 import subprocess
 import time
 import shutil
+from models import *
 
-database = "database/database.txt"
-
-db = open(database, "a+")
-# db.write("file_location, attributes\n")
-
+db = db('pre_ocr')
 source = 'raw/'
 destination = 'processed/'
 raw_files = [f for f in listdir(source) if isfile(join(source, f))]
+
 print("%d files in raw" % (len(raw_files)))
 for f in raw_files:
+    ''' Renames scrapped images and and moves to processed folder '''
+    
     fname = f
     fname = ''.join([i if ord(i) < 128 else ' ' for i in fname])
     f = f.decode('utf-8', 'ignore')
@@ -22,4 +22,8 @@ for f in raw_files:
     ext = f.split('.')[-1]
     location = "%s%s.%s" % (destination, pfile, ext)
     shutil.move("%s%s" % (source, f), location)
-    db.write(location + "," + ' '.join(fname.split('.')[:-1]) + "\n")
+    files_data = {
+    	'location' : location,
+    	'attributes' : fname.split('.')[:-1]
+    }
+    db.insert_one(files_data)

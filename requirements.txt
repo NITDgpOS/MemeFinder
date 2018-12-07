@@ -5,6 +5,7 @@ opencv-python>=3.4.0.12
 Pillow>=5.0.0
 pytesseract>=0.1.7
 six>=1.11.0
+pymongo[srv,tls]>=3.7.2
 requests
 flask
 gunicorn

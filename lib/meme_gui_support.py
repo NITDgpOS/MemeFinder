@@ -7,7 +7,7 @@ import sys
 import subprocess
 from os import listdir
 from os.path import isfile, join
-import search
+from search import *
 
 
 try:
@@ -46,9 +46,11 @@ def destroy_window():
 
 
 def getMemeList(query):
-    source = 'database/data2.txt'
-    m.memeList = search.get_score(search.create_index(
-        source), search.generate_query(query))
+    memes = get_score_db(generate_query_db(query))
+    memes = list(map(
+        lambda e: e.replace('processed/', '../processed/'), memes
+    ))
+    m.memeList = memes
 
 
 def display(canvas, image_path):

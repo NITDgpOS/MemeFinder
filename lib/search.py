@@ -1,79 +1,71 @@
 import nltk
 from nltk.corpus import wordnet
-import pickle
-import os
 
-DIRNAME = os.path.dirname(os.path.abspath(__file__))
+try:
+    from .models import *
+except:
+    pass
 
+try:
+    from models import *
+except:
+    pass
 
-def generate_query(query):
-    """ Generated extended related queries based on the user query. """
+def generate_query_db(query):
+    create_index_db()
     queryList = (' '.join(("".join((char if char.isalpha() else ' ')
                                    for char in query)).split(','))).split()
     keywords = []
     for query in queryList:
         for syn in wordnet.synsets(query):
             for l in syn.lemmas():
-                keywords.append(l.name())
+                keywords.append(l.name().lower())
     return keywords
 
+def create_index_db(): 
+    if not update_required :
+        return
+    ''' Creates index for the processed images '''
+    data_db = db('post_ocr')
+    index_db = db('INDEX')
 
-def create_index(database):
-    """ Creates a dictionary of file name and associated text attribues from the database. """
-    with open(database) as db:
-        INDEX = {}
-        db.readline()  # ignoring the column headers
-        for entry in db:
-            entry = entry.split(',')
-            filename = entry[0]
-            text = ' '.join(entry[1:])
-            text = (' '.join((''.join((char if char.isalpha() else ' ')
-                                      for char in text)).split(','))).split()
-            INDEX[filename] = text
-        with open(os.path.join(DIRNAME, 'index.pickle'), 'wb') as index_file:
-            pickle.dump(INDEX, index_file)
-    return INDEX
+    dropCollection('INDEX')
+    data = data_db.find({})
+    for entry in data:
+        all_words = entry['attributes']+(entry['ocr_out'])
 
+        words = (" ".join(("".join((char if char.isalpha() else " ")
+            for char in (all_words )).split(','))).split())
+        input_data = {
+            'location' : entry['location'],
+            'words' : words,
+            'score' : 0
+        }
+        index_db.insert_one(input_data)
 
-def get_score(INDEX, keywords):
-    """ Scores each entry in the database on the basis of its relevance to the keywords. """
-    total_entries = len(INDEX)
-    key_list = list(INDEX.keys())
-    valueList = list(INDEX.values())
-    serial_list = list(range(total_entries))
-    score_list = [0 for i in range(total_entries)]
-    # Assigning score proportional to relevance
-    for word in keywords:
-        for i in range(total_entries):
-            if word.lower() in [x.lower() for x in valueList[i]]:
-                score_list[i] = score_list[i] + 1
-    with open(os.path.join(DIRNAME, 'score.pickle'), 'wb') as score_file:
-        pickle.dump(score_list, score_file)
+def get_score_db(keywords):
+    index_db = db('INDEX')
+    rows = index_db.find({})
 
-    matched_files = []
-    for t in range(len(score_list)):
-        if score_list[t] > 0:
-            matched_files.append(key_list[t])
+    for row in rows:
+        for word in row['words']:
+            for key in keywords:
+                if word.lower() == key.lower() :
+                    index_db.update_one({'location': row['location'] }, {'$inc': {'score': 1 }})
 
-    while 0 in score_list:
-        score_list.remove(0)
+    rows = index_db.find().sort([("score", pymongo.DESCENDING)])
+    memememes = list( img['location'] for img in rows if img['score']>0 )
+    # self obsession with me :P
 
-    matched = {}
-    l = len(score_list)
+    rows = index_db.find({})
+    index_db.update_many({}, {'$set': {'score':0}})
+    return memememes
 
-    for i in range(l):
-        matched[matched_files[i]] = score_list[i]
+def update_required():
+    data_db = db('post_ocr')
+    index_db = db('INDEX')
 
-    import operator
-    sorted_list = sorted(matched.items(), key=operator.itemgetter(1))
+    processed_images = data_db.count()
+    indexed_images = index_db.count()
 
-    # Return score_list, matched_files
-    memes = [x[0] for x in sorted_list]
-    return memes[::-1]
-
-
-def load_index(index_name):
-    """ Returns an object from given pickle file. """
-    with open(index_name, 'rb') as index_file:
-        obj = pickle.load(index_file)
-    return obj
+    return processed_images != indexed_images
