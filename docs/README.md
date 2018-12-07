@@ -68,21 +68,21 @@ Extracts text using Tesseract OCR from the meme from the `raw/` folder.
 
 ### File: `search.py`
 
-#### `generate_query(query)`
+#### `generate_query_db(query)`
 
 Extends the query to include all synonyms related to the input query using nltk package.
 
-#### `create_index(database)`
+#### `create_index_db()`
 
-Creates an dictionary (index) of all memes stored in the database, where the **filename** is the `key` and the **associated text** is the `value`.
+Creates an new collection of all memes stored in the database, where the __filename__ is used as `key` and __associated text__ as `value`. Along with that `score` field is added to map ranking in `get_score_db()`
 
-#### `get_score(INDEX, keywords)`
+#### `update_required()`
 
-Creates a relevance based score list matched with the filenames in `INDEX` for the given `keywords`.
+Checks if there is update in data and correspondingly calls `create_index_db()`
 
-#### `load_index(index_name)`
+#### `get_score_db(keywords)`
 
-Loads an index dictionary from `index_name` using `pickle` library.
+Creates a relevance based score list matched with the filenames in collection `INDEX` for the given `keywords`
 
 ### File: `util.py`
 
