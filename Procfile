@@ -1,1 +1,1 @@
-web: bash collect.sh ; gunicorn app:app
+web: mkdir static/processed/ ; cp processed/* static/processed/ ; gunicorn app:app
