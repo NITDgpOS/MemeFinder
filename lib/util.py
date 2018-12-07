@@ -1,11 +1,9 @@
-from .search import get_score, create_index, generate_query
-
-source = 'database/data2.txt'
-
+from .search import get_score_db, generate_query_db
 
 def get_memes(query):
     """ Returns list of meme files from the database based on the `query`. """
-    memes = get_score(create_index(source), generate_query(query))
+
+    memes = get_score_db(generate_query_db(query))
     memes = list(map(
         lambda e: e.replace('processed/', ''), memes
     ))

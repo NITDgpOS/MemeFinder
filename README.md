@@ -66,7 +66,7 @@ sudo bash add.sh
 * hashlib
 * shutil
 * autocorrect
-* pickle
+* pymongo
 
 ### Future Improvements
 * Adding functionality to the progress bar
