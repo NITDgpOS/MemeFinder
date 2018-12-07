@@ -1,2 +1,17 @@
-static/processed/*
+# Standard
+**/__pycache__/
 *.pyc
+
+# No memes to be tracked
+processed/
+
+# Pickle files are not needed
+lib/*.pickle
+
+# No sharing the same database
+database/
+
+# Temperory files and folders
+raw/
+temp/
+scraper/*.png
