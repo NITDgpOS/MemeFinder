@@ -1,4 +1,4 @@
-#   _  _   ___  _____  __      __ ___   ___  _  __ ___  _  _   ___ 
+#   _  _   ___  _____  __      __ ___   ___  _  __ ___  _  _   ___
 #  | \| | / _ \|_   _| \ \    / // _ \ | _ \| |/ /|_ _|| \| | / __|
 #  | .` || (_) | | |    \ \/\/ /| (_) ||   /| ' <  | | | .` || (_ |
 #  |_|\_| \___/  |_|     \_/\_/  \___/ |_|_\|_|\_\|___||_|\_| \___|
@@ -11,10 +11,10 @@ import json
 import sys
 import shutil
 import csv
-                                                                 
+
 
 for arg in sys.argv[1:]:
-    print (arg)
+    print(arg)
     data = {
         'query': arg
     }
@@ -27,7 +27,7 @@ for arg in sys.argv[1:]:
         headers=headers
     )
     res = response.json()
-    print (res)
+    print(res)
     with open('scraper/Meme1.txt', 'ab+') as g:
         with open("scraper/Meme.txt", 'r+') as f:
             for line in f:

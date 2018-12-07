@@ -9,7 +9,8 @@ counter = 0
 
 
 def getPosts(subreddit, postLimit):
-    url = 'http://www.reddit.com/r/{}/.json?limit={}'.format(subreddit, postLimit)
+    url = 'http://www.reddit.com/r/{}/.json?limit={}'.format(
+        subreddit, postLimit)
     headers = {
         'User-Agent': 'Reddit Wallpaper Scraper 1.0'
     }
@@ -54,7 +55,7 @@ def makeSaveDir(dir):
     return dir + '/'
 
 
-def downloadImagesFromReddit(subreddits, postLimit=1000, scoreLimit=100):
+def downloadImagesFromReddit(subreddits, postLimit=10000, scoreLimit=100):
     for subreddit in subreddits:
         posts = getPosts(subreddit, postLimit)
         saveImages(posts, scoreLimit, subreddit.lower())

@@ -9,11 +9,9 @@ RESULT=$?
 cd ..
 
 if [ $RESULT -eq 0 ]; then
-    mv temp/*/* raw/
-    rm -rf temp
+    cp temp/*/* raw/
     python scraper/standard.py
     python scraper/ocr.py
-    rm -r raw/
 else
   echo "Stopping script!"
 fi

@@ -3,13 +3,14 @@ import pytesseract
 from pytesseract import image_to_string
 import os
 import cv2
-import os
+import re
 from autocorrect import spell
-from models import *
 import string
+from models import *
 
 db_pre_ocr = db('pre_ocr')
 db_post_ocr = db('post_ocr')
+
 
 def extractText(image_path):
     try:
@@ -39,21 +40,23 @@ def extractText(image_path):
             extracted.append(spell(t))
         return(' '.join(extracted))
 
-    except BaseException:
-        print("image skipped")
+    except BaseException as e:
+        print(e)
 
 
 try:
     process_files = db_pre_ocr.find({})
 
     for image in process_files:
-        fromImage = extractText(image.location)
+        fromImage = extractText(image['location'])
+        fromImageClean = re.sub(r'\W+', ' ', fromImage)  # Only alphanumeric
         if fromImage != "00000":
+
             add_image = {
-                'location' : image.location,
-                'attribute' : image.attribute,
-                'ocr_out' : [i if ord(i) < 128 else "" for i in fromImage]
+                'location': image['location'],
+                'attribute': image['attributes'],
+                'ocr_out': fromImageClean
             }
-            db_pre_ocr.insert_one(add_image)
-except BaseException:
-    print("image skipped")
+            db_post_ocr.insert_one(add_image)
+except BaseException as e:
+    print(e)
