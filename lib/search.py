@@ -1,15 +1,7 @@
 import nltk
 from nltk.corpus import wordnet
-
-try:
-    from .models import *
-except:
-    pass
-
-try:
-    from models import *
-except:
-    pass
+import pymongo
+import scraper.models as models
 
 
 def generate_query_db(query):
@@ -28,13 +20,13 @@ def create_index_db():
     if not update_required:
         return
     ''' Creates index for the processed images '''
-    data_db = db('post_ocr')
-    index_db = db('INDEX')
+    data_db = models.db('post_ocr')
+    index_db = models.db('INDEX')
 
-    dropCollection('INDEX')
+    models.dropCollection('INDEX')
     data = data_db.find({})
     for entry in data:
-        all_words = entry['attributes']+(entry['ocr_out'])
+        all_words = entry['attribute']+(entry['ocr_out'])
 
         words = (" ".join(("".join((char if char.isalpha() else " ")
                                    for char in (all_words)).split(','))).split())
@@ -47,7 +39,7 @@ def create_index_db():
 
 
 def get_score_db(keywords):
-    index_db = db('INDEX')
+    index_db = models.db('INDEX')
     rows = index_db.find({})
 
     for row in rows:
@@ -67,8 +59,8 @@ def get_score_db(keywords):
 
 
 def update_required():
-    data_db = db('post_ocr')
-    index_db = db('INDEX')
+    data_db = models.db('post_ocr')
+    index_db = models.db('INDEX')
 
     processed_images = data_db.count()
     indexed_images = index_db.count()
