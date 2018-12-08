@@ -75,23 +75,4 @@ sudo bash add.sh
 * Storing popular meme templates and checking images for similarity and associating special keywords
 
 ## Documentation
-
-### `standard.py`
-* renames the memes present in `raw` folder to a  unique hex digest generated filename and moves it to `processed` folder
-
-### `ocr.py`
-* `extract_text(image_path)`: extracts text using OCR from the meme at `image_path`
-
-### `search.py`
-* `generate_query(query)`: Extends the query to include all synonyms related to the input query using nltk package
-* `create_index(database)`: creates an dictionary (index) of all memes stored in the database, where the __filename__ is the `key` and the __associated text__ is the `value`
-* `get_score(INDEX, keywords)`: Creates a relevance based score list matched with the filenames in `INDEX` for the given `keywords`
-* `load_index(index_name)`: Loads an index dictionary from `index_name` using `pickle` library
-
-### `meme_gui_support.py`
-* `meme`: class which contains vital information like `memeList` and `currentImage` and the object of this class is very important in the functioning of the GUI
-* `getMemeList(query)`: gets the list of memes which match the given `query`
-* `display(canvas, image_path)`: displays the image at `image_path` on the `canvas` in the GUI
-* `go(canvas, query)`: this function initiates all the process essential for the GUI to function. It gets the memeList ready based on the entered `query` and also dispays the first meme on the `canvas`
-* `prev(canvas)`: displays the previous image on the `canvas`
-* `next(canvas)`: displays the next image on the `canvas`
+[MemeFinder documentation](docs/README.md)
