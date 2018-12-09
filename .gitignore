@@ -1,2 +1,4 @@
 static/processed/*
 *.pyc
+tags
+tags.*
