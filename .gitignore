@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 static/processed/*
 *.pyc
-tags
-tags.*
+
+=======
+# Standard
+**/__pycache__/
+*.pyc
+
+# No memes to be tracked
+processed/
+
+# No sharing the same database
+database/
+
+# Temperory files and folders
+raw/
+temp/
+scraper/*.png

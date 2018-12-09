@@ -1,3 +1,1 @@
-cd scrape
-python api.py
-cd ..
+python scraper/api.py "meme"

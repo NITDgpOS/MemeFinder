@@ -1,15 +1,16 @@
 import requests
-import urllib
+from urllib.request import urlretrieve
 import os
 import sys
 import time
+import csv
 
 counter = 0
 
 
 def getPosts(subreddit, postLimit):
-    url = 'http://www.reddit.com/r/' + \
-        subreddit + '/.json?limit=' + str(postLimit)
+    url = 'http://www.reddit.com/r/{}/.json?limit={}'.format(
+        subreddit, postLimit)
     headers = {
         'User-Agent': 'Reddit Wallpaper Scraper 1.0'
     }
@@ -21,7 +22,7 @@ def getPosts(subreddit, postLimit):
         return data['data']['children']
     else:
         print('Sorry, but there was an error retrieving the subreddit\'s data!')
-        return None
+        return []
 
 
 def saveImages(posts, scoreLimit, save_dir='reddit_wallpapers'):
@@ -39,11 +40,11 @@ def saveImage(url, title, save_dir):
         save_dir = makeSaveDir(save_dir)
         dot_location = url.rfind('.')
         filename = (save_dir + title.replace('/', ':') +
-                    url[dot_location: dot_location + 4]).encode('utf-8')
+                    url[dot_location: dot_location + 4])
         if not os.path.exists(filename):
             print('Saving ' + filename + '!\n')
             counter += 1
-            urllib.urlretrieve(url, filename)
+            urlretrieve(url, filename)
     except OSError:
         print('file name too long')
 
@@ -54,7 +55,7 @@ def makeSaveDir(dir):
     return dir + '/'
 
 
-def downloadImagesFromReddit(subreddits, postLimit=100000, scoreLimit=100):
+def downloadImagesFromReddit(subreddits, postLimit=10000, scoreLimit=100):
     for subreddit in subreddits:
         posts = getPosts(subreddit, postLimit)
         saveImages(posts, scoreLimit, subreddit.lower())
@@ -65,14 +66,10 @@ def main():
     if len(sys.argv) > 1:
         downloadImagesFromReddit(sys.argv[1:])
     else:
-        f = open("./Meme.txt", "r")
-        arr = f.read().split("\n")
-        for i in range(0, len(arr)):
-            arr[i] = arr[i].replace(",", "")
-            arr[i] = arr[i].strip()
-
-        downloadImagesFromReddit(arr[:])
-        f.close()
+        with open('../scraper/Meme.csv', 'r') as f:
+            reader = csv.reader(f)
+            arr = [row[0] for row in reader]
+            downloadImagesFromReddit(arr[:])
 
 
 if __name__ == '__main__':
