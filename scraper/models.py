@@ -1,7 +1,6 @@
 import pymongo
 
-# mongodb+srv://jayv:simplepass@cluster0-ei4tu.mongodb.net/test?retryWrites=true
-dbClient = pymongo.MongoClient()
+dbClient = pymongo.MongoClient('mongodb+srv://jayv:simplepass@cluster0-ei4tu.mongodb.net/test?retryWrites=true')
 dbc = dbClient['MemeFinder']
 
 

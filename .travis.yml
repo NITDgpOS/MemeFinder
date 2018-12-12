@@ -1,0 +1,12 @@
+sudo: required
+dist: xenial
+language: python
+python:
+- '3.6'
+- '3.7-dev'
+install:
+- pip install -r requirements.txt
+- python -c "import nltk; nltk.download('wordnet')"
+script: 
+- pytest
+

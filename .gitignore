@@ -1,6 +1,7 @@
 # Standard
 **/__pycache__/
 *.pyc
+.pytest_cache/
 
 # No memes to be tracked
 processed/
